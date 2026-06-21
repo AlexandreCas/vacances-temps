@@ -35,10 +35,10 @@ function renderPla(dia) {
       </li>`
     )
     .join("");
-  return `<section class="card plan">
-    <p class="kicker">Què faré avui</p>
+  return `<details class="card plan coll" open>
+    <summary class="kicker">Què faré avui</summary>
     <ul class="plan-list">${items}</ul>
-  </section>`;
+  </details>`;
 }
 
 function renderVols(dia) {
@@ -83,8 +83,8 @@ function renderHotel(dia) {
     h.web ? `<a href="${h.web}" target="_blank" rel="noopener">Web ↗</a>` : "",
     h.tel ? `<a href="tel:${h.tel.replace(/\s/g, "")}">Trucar</a>` : "",
   ].join("");
-  return `<section class="card hotel">
-    <p class="kicker">On dormo</p>
+  return `<details class="card hotel coll">
+    <summary class="kicker">On dormo</summary>
     <h3 class="wear-h">${h.nom}</h3>
     <p class="hotel-addr">📍 ${h.adreca}</p>
     <div class="hotel-meta">
@@ -93,7 +93,7 @@ function renderHotel(dia) {
       <span><i>Nits</i>${nits}</span>
     </div>
     <div class="hotel-links">${links}</div>
-  </section>`;
+  </details>`;
 }
 
 function paramsRoba(dia, r, hores) {
@@ -162,8 +162,8 @@ export function renderDetall(dia, r, hores) {
     </div>
   </section>`;
 
-  const wear = `<section class="card wear">
-    <p class="kicker">Què em poso</p>
+  const wear = `<details class="card wear coll" open>
+    <summary class="kicker">Què em poso</summary>
     <h3 class="wear-h">${roba.nivell}</h3>
     <div class="chips">
       ${chips.map((ch) => `<span class="chip-roba chip--${ch[2]}"><span class="ce">${ch[0]}</span>${ch[1]}</span>`).join("")}
@@ -173,7 +173,7 @@ export function renderDetall(dia, r, hores) {
       <summary>Consells complets</summary>
       <ul>${roba.peces.map((x) => `<li>${x}</li>`).join("")}</ul>
     </details>
-  </section>`;
+  </details>`;
 
   const filesHores = hores
     .filter((_, i) => i % 2 === 0)

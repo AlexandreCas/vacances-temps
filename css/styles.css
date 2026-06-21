@@ -186,6 +186,25 @@ a { color: var(--aqua); }
   text-transform: none;
 }
 
+/* Targetes desplegables (details/summary) */
+.coll > summary {
+  cursor: pointer;
+  list-style: none;
+  margin-bottom: 0;
+}
+.coll > summary::-webkit-details-marker { display: none; }
+.coll > summary::after {
+  content: "";
+  margin-left: auto;
+  width: 9px; height: 9px;
+  border-right: 2px solid var(--mist-3);
+  border-bottom: 2px solid var(--mist-3);
+  transform: rotate(45deg);
+  transition: transform 0.2s;
+}
+.coll[open] > summary::after { transform: rotate(-135deg); }
+.coll[open] > summary { margin-bottom: 14px; }
+
 /* ---------- Icones ---------- */
 .ico { display: inline-block; vertical-align: middle; }
 .ico-mini { width: 14px; height: 14px; }
