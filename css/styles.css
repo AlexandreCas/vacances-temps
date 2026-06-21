@@ -603,8 +603,9 @@ a { color: var(--aqua); }
   color: var(--vermilion); font-weight: 700;
 }
 .ph-row { display: flex; justify-content: space-between; gap: 14px; padding: 9px 0; border-top: 1px solid var(--line); }
-.ph-jp { display: flex; flex-direction: column; font-family: var(--display); font-size: 1.05rem; line-height: 1.25; }
-.ph-ro { font-family: var(--body); font-size: 0.72rem; font-style: italic; color: var(--mist-3); margin-top: 2px; }
+.ph-jp { display: flex; flex-direction: column; line-height: 1.25; }
+.ph-pro { font-weight: 700; font-size: 0.98rem; color: var(--mist); }
+.ph-kana { font-family: var(--display); font-size: 0.9rem; color: var(--mist-3); margin-top: 2px; }
 .ph-ca { font-size: 0.85rem; color: var(--mist-2); text-align: right; align-self: center; max-width: 48%; }
 
 /* ---------- Busca mines ---------- */

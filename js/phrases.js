@@ -79,7 +79,7 @@ export function initFrases() {
       ${g.items
         .map(
           (it) => `<div class="ph-row">
-            <div class="ph-jp">${it.jp}<span class="ph-ro">${it.ro}</span></div>
+            <div class="ph-jp"><span class="ph-pro">${it.ro}</span><span class="ph-kana">${it.jp}</span></div>
             <div class="ph-ca">${it.ca}</div>
           </div>`
         )
