@@ -4,6 +4,7 @@ import { carregarTemps, diaPerData, horesPerData } from "./weather.js";
 import { recomanaRoba } from "./clothing.js";
 import { initFX } from "./fx.js";
 import { initFrases } from "./phrases.js";
+import { initGame } from "./game.js";
 import {
   renderSelector,
   renderDetall,
@@ -140,6 +141,7 @@ async function inici() {
   lligarEsdeveniments();
   initFX();
   initFrases();
+  initGame();
   renderEstatCarrega("⏳ Carregant la previsió del temps…");
   try {
     estat.temps = await carregarTemps();

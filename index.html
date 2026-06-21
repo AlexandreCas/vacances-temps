@@ -23,6 +23,7 @@
         <div class="tb-actions">
           <button id="ph-btn" class="icon-btn" type="button" aria-label="Frases en japonès">あ</button>
           <button id="fx-btn" class="icon-btn" type="button" aria-label="Calculadora ien / euro">¥€</button>
+          <button id="game-btn" class="icon-btn" type="button" aria-label="Joc busca mines">💣</button>
         </div>
         <div id="banner" class="banner"></div>
       </div>
@@ -68,6 +69,21 @@
       <button class="fx-x" type="button" data-close aria-label="Tancar">&times;</button>
       <p class="kicker">Frases útils 日本語</p>
       <div id="ph-list" class="ph-list"></div>
+    </div>
+  </div>
+
+  <div id="game-modal" class="fx-modal" hidden>
+    <div class="fx-backdrop" data-close></div>
+    <div class="fx-card game-card" role="dialog" aria-modal="true" aria-label="Busca mines">
+      <button class="fx-x" type="button" data-close aria-label="Tancar">&times;</button>
+      <p class="kicker">Busca mines 💣</p>
+      <div class="game-bar">
+        <span id="game-mines" class="game-stat">💣 10</span>
+        <button id="game-reset" class="game-reset" type="button" aria-label="Nova partida">🙂</button>
+        <button id="game-flag" class="game-flag" type="button" aria-pressed="false" aria-label="Mode bandera">🚩</button>
+      </div>
+      <div id="game-board" class="game-board"></div>
+      <p class="game-help">Toca per descobrir. Activa 🚩 per marcar mines (o mantén premut).</p>
     </div>
   </div>
 

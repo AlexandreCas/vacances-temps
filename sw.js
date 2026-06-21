@@ -1,5 +1,5 @@
 // Service worker: cache de l'app shell + tipografia (offline) + previsió en network-first.
-const CACHE = "vacances-temps-v17";
+const CACHE = "vacances-temps-v18";
 const FONT_CACHE = "vacances-fonts-v1";
 const MANTENIR = [CACHE, FONT_CACHE];
 
@@ -14,6 +14,7 @@ const SHELL = [
   "./js/itinerary.js",
   "./js/fx.js",
   "./js/phrases.js",
+  "./js/game.js",
   "./manifest.webmanifest",
   "./icons/icon-192.png",
   "./icons/icon-512.png",

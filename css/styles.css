@@ -607,6 +607,41 @@ a { color: var(--aqua); }
 .ph-ro { font-family: var(--body); font-size: 0.72rem; font-style: italic; color: var(--mist-3); margin-top: 2px; }
 .ph-ca { font-size: 0.85rem; color: var(--mist-2); text-align: right; align-self: center; max-width: 48%; }
 
+/* ---------- Busca mines ---------- */
+.game-card { max-width: 360px; }
+.game-bar { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
+.game-stat { font-family: var(--display); font-weight: 600; font-size: 1.1rem; min-width: 60px; }
+.game-reset, .game-flag {
+  height: 42px; border-radius: 11px;
+  border: 1px solid var(--line-2); background: var(--ink-3);
+  cursor: pointer; font-size: 1.2rem;
+}
+.game-reset { width: 52px; }
+.game-flag { width: 46px; }
+.game-flag[aria-pressed="true"] { border-color: var(--vermilion); background: rgba(224, 87, 62, 0.2); }
+.game-board { display: grid; gap: 3px; touch-action: manipulation; user-select: none; }
+.cell {
+  width: 100%; aspect-ratio: 1;
+  padding: 0; border: 1px solid var(--line-2);
+  background: var(--ink-3); border-radius: 6px;
+  font-weight: 800; font-size: 0.95rem; color: var(--mist);
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+}
+.cell.rev { background: var(--ink); border-color: var(--line); cursor: default; }
+.cell.mine { background: rgba(224, 87, 62, 0.25); }
+.cell.boom { background: var(--vermilion); }
+.cell.flag { background: var(--ink-2); }
+.cell.n1 { color: #5b8cc4; }
+.cell.n2 { color: #38c8c9; }
+.cell.n3 { color: #e0573e; }
+.cell.n4 { color: #9a7fd0; }
+.cell.n5 { color: #f2b53b; }
+.cell.n6 { color: #43c08a; }
+.cell.n7 { color: #c47fb0; }
+.cell.n8 { color: #aab3c2; }
+.game-help { margin: 14px 0 0; font-size: 0.74rem; color: var(--mist-3); text-align: center; }
+
 /* ---------- Pantalles grans (iPad / ordinador) ---------- */
 @media (min-width: 900px) {
   :root { --wrap: 900px; }
