@@ -23,11 +23,12 @@ const estat = {
 
 // Tria el dia inicial: avui si és dins del viatge, si no el primer dia.
 function indexInicial() {
-  const avui = new Date().toISOString().slice(0, 10);
-  const i = DAYS.findIndex((d) => d.date === avui);
-  if (i !== -1) return i;
-  if (avui < DAYS[0].date) return 0;
-  return DAYS.length - 1;
+  const d = new Date();
+  const avui = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
+  const i = DAYS.findIndex((dia) => dia.date === avui);
+  if (i !== -1) return i; // estem dins del viatge → dia actual
+  if (avui < DAYS[0].date) return 0; // encara no ha començat → primer dia
+  return DAYS.length - 1; // ja ha acabat → últim dia
 }
 
 function resumDe(dia) {
