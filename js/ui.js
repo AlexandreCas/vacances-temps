@@ -2,6 +2,18 @@
 import { descriuCodi, iconaSVG, classePanell } from "./weather.js";
 import { recomanaRoba, chipsRoba } from "./clothing.js";
 import { LOCATIONS, hotelPerData, FLIGHTS } from "./itinerary.js";
+import {
+  CATEGORIES, PERSONES, personaPredef, despesesDia,
+  totalsPerMoneda, totalsPersonaDia, totalsViatge, totalsViatgePersona, catInfo,
+} from "./expenses.js";
+
+export function formatImport(v, cur) {
+  return cur === "¥" ? Math.round(v).toLocaleString("ca-ES") : v.toFixed(2);
+}
+function fmtTotals(t) {
+  const parts = Object.entries(t).map(([cur, v]) => `${formatImport(v, cur)} ${cur}`);
+  return parts.length ? parts.join(" · ") : "—";
+}
 
 const DIES_SET = ["dg", "dl", "dt", "dc", "dj", "dv", "ds"];
 const MESOS = ["gen", "feb", "març", "abr", "maig", "juny", "jul", "ago", "set", "oct", "nov", "des"];
@@ -100,6 +112,60 @@ function renderHotel(dia) {
     </div>
     <div class="hotel-links">${links}</div>
   </details>`;
+}
+
+function fmtPersones(perPersona) {
+  return PERSONES.filter((p) => Object.keys(perPersona[p]).length)
+    .map((p) => `<span class="desp-pers"><i>${p}</i> ${fmtTotals(perPersona[p])}</span>`)
+    .join("");
+}
+
+export function renderDespeses(dia, obert = false) {
+  const items = despesesDia(dia.date);
+  const totals = totalsPerMoneda(dia.date);
+  const perPersona = totalsPersonaDia(dia.date);
+  const defCur = dia.loc === "maldives" ? "$" : dia.loc === "abudhabi" ? "€" : "¥";
+  const defPers = personaPredef();
+  const opCur = (c) => `<option ${c === defCur ? "selected" : ""}>${c}</option>`;
+  const opPers = (p) => `<option ${p === defPers ? "selected" : ""}>${p}</option>`;
+
+  const llista = items.length
+    ? items
+        .map((e, i) => {
+          const c = catInfo(e.cat);
+          return `<li class="desp-row">
+            <span class="desp-ico">${c.ico}</span>
+            <span class="desp-cat">${c.nom}<span class="desp-who">${e.who || PERSONES[0]}</span></span>
+            <span class="desp-amt">${formatImport(e.amount, e.cur)} ${e.cur}</span>
+            <button class="desp-del" data-i="${i}" type="button" aria-label="Esborrar">&times;</button>
+          </li>`;
+        })
+        .join("")
+    : `<li class="desp-buit">Encara no hi ha despeses aquest dia.</li>`;
+
+  return `<details class="card coll despeses" id="despeses-card"${obert ? " open" : ""}>
+    <summary class="kicker">Despeses${items.length ? ` · ${fmtTotals(totals)}` : ""}</summary>
+    <ul class="desp-list">${llista}</ul>
+    ${items.length ? `<p class="desp-persones">${fmtPersones(perPersona)}</p>` : ""}
+    <div class="desp-form">
+      <input class="desp-amount" type="number" inputmode="decimal" placeholder="Import" />
+      <select class="desp-cur">${opCur("¥")}${opCur("€")}${opCur("$")}</select>
+      <select class="desp-fcat">${CATEGORIES.map((c) => `<option value="${c.id}">${c.ico} ${c.nom}</option>`).join("")}</select>
+      <select class="desp-fwho">${PERSONES.map(opPers).join("")}</select>
+      <button class="desp-add" type="button">Afegir</button>
+    </div>
+  </details>`;
+}
+
+export function renderResumDespeses() {
+  const t = totalsViatge();
+  if (!Object.keys(t).length) return "";
+  const perPersona = totalsViatgePersona();
+  return `<section class="card">
+    <p class="kicker">Despeses del viatge</p>
+    <p class="desp-total-gran">${fmtTotals(t)}</p>
+    <p class="desp-persones">${fmtPersones(perPersona)}</p>
+  </section>`;
 }
 
 function paramsRoba(dia, r, hores) {
@@ -216,7 +282,7 @@ export function renderDetall(dia, r, hores) {
     </div>
   </section>`;
 
-  return hero + renderPla(dia) + renderVols(dia) + renderHotel(dia) + wear + stats + hourly;
+  return hero + renderPla(dia) + renderVols(dia) + renderHotel(dia) + wear + stats + hourly + renderDespeses(dia);
 }
 
 function renderSenseDades(dia, loc) {
@@ -234,7 +300,7 @@ function renderSenseDades(dia, loc) {
         </div>
       </div>
     </div>
-  </section>` + renderPla(dia) + renderVols(dia) + renderHotel(dia);
+  </section>` + renderPla(dia) + renderVols(dia) + renderHotel(dia) + renderDespeses(dia);
 }
 
 // ---- Vista ruta (10 dies) com a línia de temps ----

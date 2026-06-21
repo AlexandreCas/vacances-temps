@@ -608,6 +608,37 @@ a { color: var(--aqua); }
 .ph-kana { font-family: var(--display); font-size: 0.9rem; color: var(--mist-3); margin-top: 2px; }
 .ph-ca { font-size: 0.85rem; color: var(--mist-2); text-align: right; align-self: center; max-width: 48%; }
 
+/* ---------- Despeses ---------- */
+.desp-list { list-style: none; margin: 0 0 4px; padding: 0; }
+.desp-row { display: flex; align-items: center; gap: 10px; padding: 9px 0; border-top: 1px solid var(--line); }
+.desp-row:first-child { border-top: 0; }
+.desp-ico { font-size: 1.1rem; flex: 0 0 auto; }
+.desp-cat { flex: 1; font-size: 0.9rem; display: flex; flex-direction: column; }
+.desp-who { font-size: 0.7rem; color: var(--mist-3); }
+.desp-amt { font-family: var(--display); font-weight: 600; font-size: 1rem; white-space: nowrap; }
+.desp-del { border: 0; background: transparent; color: var(--mist-3); font-size: 1.3rem; line-height: 1; cursor: pointer; padding: 0 2px; }
+.desp-del:active { color: var(--vermilion); }
+.desp-buit { color: var(--mist-3); font-size: 0.85rem; padding: 6px 0; }
+.desp-persones { margin: 4px 0 12px; display: flex; flex-wrap: wrap; gap: 14px; font-size: 0.8rem; color: var(--mist-2); }
+.desp-pers i { font-style: normal; color: var(--mist-3); margin-right: 5px; }
+.desp-total-gran { font-family: var(--display); font-weight: 600; font-size: 1.5rem; margin: 0 0 6px; }
+
+.desp-form { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+.desp-amount { flex: 1 1 90px; min-width: 0; }
+.desp-cur { flex: 0 0 64px; }
+.desp-fcat { flex: 1 1 130px; }
+.desp-fwho { flex: 1 1 110px; }
+.desp-form input, .desp-form select {
+  background: var(--ink-3); border: 1px solid var(--line);
+  border-radius: 10px; padding: 10px; color: var(--mist); font: inherit; font-size: 0.9rem;
+}
+.desp-form input:focus, .desp-form select:focus { outline: none; border-color: var(--vermilion); }
+.desp-add {
+  flex: 1 1 100%; padding: 11px; border: 0; border-radius: 10px;
+  background: var(--vermilion); color: #fff; font: inherit; font-weight: 700; cursor: pointer;
+}
+.desp-add:active { opacity: 0.85; }
+
 /* ---------- Busca mines ---------- */
 .game-card { width: 100%; max-width: min(94vw, 430px); }
 .game-levels { display: flex; align-items: center; gap: 6px; margin-bottom: 12px; }

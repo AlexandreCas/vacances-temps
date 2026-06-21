@@ -5,11 +5,14 @@ import { recomanaRoba } from "./clothing.js";
 import { initFX } from "./fx.js";
 import { initFrases } from "./phrases.js";
 import { initGame } from "./game.js";
+import { afegeixDespesa, treuDespesa, desaPersona } from "./expenses.js";
 import {
   renderSelector,
   renderDetall,
   renderResumLlista,
   renderMaleta,
+  renderDespeses,
+  renderResumDespeses,
   formatData,
 } from "./ui.js";
 
@@ -76,7 +79,8 @@ function renderContingut() {
     c.innerHTML = renderDetall(dia, resumDe(dia), horesDe(dia));
   } else {
     c.className = "contingut vista-ruta";
-    c.innerHTML = renderResumLlista(DAYS, resumDe) + renderMaleta(maletaAgregada());
+    c.innerHTML =
+      renderResumLlista(DAYS, resumDe) + renderResumDespeses() + renderMaleta(maletaAgregada());
   }
 }
 
@@ -102,6 +106,12 @@ function maletaAgregada() {
   return [...set];
 }
 
+function refrescaDespeses() {
+  const card = document.getElementById("despeses-card");
+  if (!card) return;
+  card.outerHTML = renderDespeses(DAYS[estat.idx], true);
+}
+
 function renderTot() {
   renderBanner();
   renderSelectorDom();
@@ -120,6 +130,28 @@ function lligarEsdeveniments() {
   });
 
   $("#contingut").addEventListener("click", (e) => {
+    // Afegir despesa
+    const add = e.target.closest(".desp-add");
+    if (add) {
+      const card = add.closest(".despeses");
+      const amount = parseFloat(card.querySelector(".desp-amount").value);
+      if (!Number.isFinite(amount) || amount <= 0) return;
+      const cur = card.querySelector(".desp-cur").value;
+      const cat = card.querySelector(".desp-fcat").value;
+      const who = card.querySelector(".desp-fwho").value;
+      afegeixDespesa(DAYS[estat.idx].date, { amount, cur, cat, who });
+      desaPersona(who);
+      refrescaDespeses();
+      return;
+    }
+    // Esborrar despesa
+    const del = e.target.closest(".desp-del");
+    if (del) {
+      treuDespesa(DAYS[estat.idx].date, Number(del.dataset.i));
+      refrescaDespeses();
+      return;
+    }
+    // Navegar des de la vista ruta
     const fila = e.target.closest(".fila-resum");
     if (!fila) return;
     estat.idx = Number(fila.dataset.idx);
