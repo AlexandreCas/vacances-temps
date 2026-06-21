@@ -65,12 +65,14 @@ function renderSelectorDom() {
 }
 
 function renderContingut() {
+  const c = $("#contingut");
   if (estat.vista === "detall") {
     const dia = DAYS[estat.idx];
-    $("#contingut").innerHTML = renderDetall(dia, resumDe(dia), horesDe(dia));
+    c.className = "contingut vista-detall";
+    c.innerHTML = renderDetall(dia, resumDe(dia), horesDe(dia));
   } else {
-    $("#contingut").innerHTML =
-      renderResumLlista(DAYS, resumDe) + renderMaleta(maletaAgregada());
+    c.className = "contingut vista-ruta";
+    c.innerHTML = renderResumLlista(DAYS, resumDe) + renderMaleta(maletaAgregada());
   }
 }
 

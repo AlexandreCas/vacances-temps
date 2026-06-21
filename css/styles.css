@@ -534,6 +534,26 @@ a { color: var(--aqua); }
   .pack-list { grid-template-columns: 1fr 1fr; }
 }
 
+/* ---------- Pantalles grans (iPad / ordinador) ---------- */
+@media (min-width: 900px) {
+  :root { --wrap: 900px; }
+
+  /* Vista del dia: panell-cel a tota l'amplada i targetes en 2 columnes */
+  .vista-detall {
+    column-count: 2;
+    column-gap: 18px;
+  }
+  .vista-detall > * {
+    break-inside: avoid;
+    margin-bottom: 18px;
+  }
+  .vista-detall .sky { column-span: all; }
+  .vista-detall .stats { grid-template-columns: repeat(3, 1fr); }
+
+  /* Vista ruta: la línia de temps queda centrada i còmoda */
+  .vista-ruta { max-width: 600px; margin-inline: auto; }
+}
+
 @media (prefers-reduced-motion: reduce) {
   * { animation: none !important; transition: none !important; }
 }
