@@ -1,5 +1,5 @@
 // Service worker: cache de l'app shell (offline) + previsió en network-first.
-const CACHE = "vacances-temps-v3";
+const CACHE = "vacances-temps-v4";
 const SHELL = [
   "./",
   "./index.html",

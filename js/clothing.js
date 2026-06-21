@@ -34,6 +34,18 @@ export function recomanaRoba(p) {
     maleta.add("Jaqueta d'abric").add("Capes tèrmiques");
   }
 
+  // --- Pantalons (curt / llarg segons sensació) ---
+  if (f >= 27) {
+    peces.push("Pantaló curt");
+    maleta.add("Pantalons curts");
+  } else if (f >= 20) {
+    peces.push("Pantaló curt o llarg lleuger");
+    maleta.add("Pantalons curts").add("Pantalons llargs lleugers");
+  } else {
+    peces.push("Pantaló llarg");
+    maleta.add("Pantalons llargs");
+  }
+
   // --- Diferència dia/nit important ---
   if (f - fmin >= 8) {
     peces.push(`Porta una capa per a la nit (baixa fins a ~${Math.round(fmin)}°C)`);
@@ -42,8 +54,8 @@ export function recomanaRoba(p) {
 
   // --- Pluja ---
   if ((p.precipProb ?? 0) >= 50 || (p.precipMm ?? 0) >= 2) {
-    peces.push("Paraigua o impermeable", "Calçat resistent a l'aigua");
-    maleta.add("Paraigua plegable").add("Impermeable lleuger");
+    peces.push("Paraigua", "Xubasquero (impermeable amb caputxa)", "Calçat resistent a l'aigua");
+    maleta.add("Paraigua plegable").add("Xubasquero / impermeable");
   } else if ((p.precipProb ?? 0) >= 25) {
     peces.push("Porta paraigua plegable per si de cas");
     maleta.add("Paraigua plegable");
@@ -95,8 +107,17 @@ export function chipsRoba(p) {
   else if (f >= 14) chips.push(["🧥", "Jaqueta lleugera", "fresc"]);
   else chips.push(["🧣", "Abric / capes", "fred"]);
 
-  if ((p.precipProb ?? 0) >= 50 || (p.precipMm ?? 0) >= 2) chips.push(["☂️", "Paraigua", "pluja"]);
-  else if ((p.precipProb ?? 0) >= 25) chips.push(["🌂", "Per si plou", "pluja"]);
+  // Pantaló curt o llarg
+  if (f >= 27) chips.push(["🩳", "Pantaló curt", "calor"]);
+  else if (f >= 20) chips.push(["🩳", "Curt o llarg", "ok"]);
+  else chips.push(["👖", "Pantaló llarg", "fresc"]);
+
+  if ((p.precipProb ?? 0) >= 50 || (p.precipMm ?? 0) >= 2) {
+    chips.push(["☂️", "Paraigua", "pluja"]);
+    chips.push(["🧥", "Xubasquero", "pluja"]);
+  } else if ((p.precipProb ?? 0) >= 25) {
+    chips.push(["🌂", "Per si plou", "pluja"]);
+  }
 
   if ((p.uvIndex ?? 0) >= 8) chips.push(["🧴", "Protecció solar", "sol"]);
   else if ((p.uvIndex ?? 0) >= 6) chips.push(["🧢", "Gorra", "sol"]);
