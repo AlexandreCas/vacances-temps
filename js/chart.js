@@ -1,6 +1,6 @@
 // Gràfic de despeses per dia: columnes Alex i Yurena, apilades per categoria (en €).
 import { DAYS } from "./itinerary.js";
-import { CATEGORIES, PERSONES, despesesDia } from "./expenses.js";
+import { CATEGORIES, PERSONES, despesesDia, sincronitza } from "./expenses.js";
 import { aEuros } from "./rates.js";
 
 const MAXPX = 150;
@@ -78,6 +78,7 @@ export function initChart() {
     modal.hidden = false;
     document.body.style.overflow = "hidden";
     render(area, buit);
+    sincronitza().then((ok) => { if (ok && !modal.hidden) render(area, buit); });
   });
   modal.addEventListener("click", (e) => {
     if (e.target.hasAttribute("data-close")) tanca();

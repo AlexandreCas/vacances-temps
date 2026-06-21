@@ -1,5 +1,7 @@
-// Despeses per dia, desades al dispositiu (localStorage).
-const KEY = "vacances-despeses-v1";
+// Despeses sincronitzades amb Supabase + cache local (offline).
+import { supaFetchAll, supaInsert, supaDelete } from "./supa.js";
+
+const KEY = "vacances-despeses-v2";
 const PERSONA_KEY = "vacances-despeses-persona";
 
 export const PERSONES = ["Alex", "Yurena"];
@@ -20,54 +22,74 @@ export const CATEGORIES = [
   { id: "entrades", ico: "🎟️", nom: "Entrades", color: "#9a7fd0" },
   { id: "altres", ico: "💴", nom: "Altres", color: "#6f798c" },
 ];
-
 export function catInfo(id) {
   return CATEGORIES.find((c) => c.id === id) || CATEGORIES[CATEGORIES.length - 1];
 }
 
-function carrega() {
-  try { return JSON.parse(localStorage.getItem(KEY)) || {}; } catch (_) { return {}; }
+// ---- Estat local ----
+let CACHE = carregaLocal();
+function carregaLocal() {
+  try { return JSON.parse(localStorage.getItem(KEY)) || []; } catch (_) { return []; }
 }
-function desa(d) {
-  try { localStorage.setItem(KEY, JSON.stringify(d)); } catch (_) {}
+function desaLocal() {
+  try { localStorage.setItem(KEY, JSON.stringify(CACHE)); } catch (_) {}
+}
+function uuid() {
+  if (crypto.randomUUID) return crypto.randomUUID();
+  return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, (c) => {
+    const r = (Math.random() * 16) | 0;
+    return (c === "x" ? r : (r & 0x3) | 0x8).toString(16);
+  });
 }
 
+// ---- Consultes ----
 export function despesesDia(date) {
-  return carrega()[date] || [];
+  return CACHE.filter((e) => e.date === date);
 }
-export function afegeixDespesa(date, exp) {
-  const d = carrega();
-  (d[date] = d[date] || []).push(exp);
-  desa(d);
-}
-export function treuDespesa(date, i) {
-  const d = carrega();
-  if (d[date]) {
-    d[date].splice(i, 1);
-    if (!d[date].length) delete d[date];
-    desa(d);
-  }
-}
-function sumaPerMoneda(llista) {
+function sumaPerMoneda(list) {
   const t = {};
-  llista.forEach((e) => { t[e.cur] = (t[e.cur] || 0) + e.amount; });
+  list.forEach((e) => { t[e.cur] = (t[e.cur] || 0) + e.amount; });
   return t;
 }
-function sumaPerPersona(llista) {
-  const out = {};
-  PERSONES.forEach((p) => { out[p] = sumaPerMoneda(llista.filter((e) => (e.who || PERSONES[0]) === p)); });
-  return out;
+function sumaPerPersona(list) {
+  const o = {};
+  PERSONES.forEach((p) => { o[p] = sumaPerMoneda(list.filter((e) => (e.who || PERSONES[0]) === p)); });
+  return o;
+}
+export const totalsPerMoneda = (date) => sumaPerMoneda(despesesDia(date));
+export const totalsPersonaDia = (date) => sumaPerPersona(despesesDia(date));
+export const totalsViatge = () => sumaPerMoneda(CACHE);
+export const totalsViatgePersona = () => sumaPerPersona(CACHE);
+
+// ---- Modificacions (local immediat + Supabase en segon pla) ----
+export function afegeixDespesa(date, d) {
+  const exp = { id: uuid(), date, amount: d.amount, cur: d.cur, cat: d.cat, who: d.who, pending: true };
+  CACHE.push(exp);
+  desaLocal();
+  supaInsert(exp).then(() => { exp.pending = false; desaLocal(); }).catch(() => {});
+  return exp;
+}
+export function treuDespesa(id) {
+  CACHE = CACHE.filter((e) => e.id !== id);
+  desaLocal();
+  supaDelete(id).catch(() => {});
 }
 
-export function totalsPerMoneda(date) {
-  return sumaPerMoneda(despesesDia(date));
-}
-export function totalsPersonaDia(date) {
-  return sumaPerPersona(despesesDia(date));
-}
-export function totalsViatge() {
-  return sumaPerMoneda(Object.values(carrega()).flat());
-}
-export function totalsViatgePersona() {
-  return sumaPerPersona(Object.values(carrega()).flat());
+// ---- Sincronització ----
+export async function sincronitza() {
+  // Reempeny les despeses locals que encara no s'han pogut desar.
+  for (const e of CACHE.filter((x) => x.pending)) {
+    try { await supaInsert(e); e.pending = false; } catch (_) {}
+  }
+  desaLocal();
+  try {
+    const remote = await supaFetchAll();
+    const remoteIds = new Set(remote.map((r) => r.id));
+    const pendentsLocal = CACHE.filter((e) => e.pending && !remoteIds.has(e.id));
+    CACHE = [...remote, ...pendentsLocal];
+    desaLocal();
+    return true;
+  } catch (_) {
+    return false;
+  }
 }

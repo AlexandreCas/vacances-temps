@@ -134,13 +134,13 @@ export function renderDespeses(dia, obert = false) {
 
   const llista = items.length
     ? items
-        .map((e, i) => {
+        .map((e) => {
           const c = catInfo(e.cat);
           return `<li class="desp-row">
             <span class="desp-ico">${c.ico}</span>
             <span class="desp-cat">${c.nom}<span class="desp-who">${e.who || PERSONES[0]}</span></span>
             <span class="desp-amt">${formatImport(e.amount, e.cur)} ${e.cur}</span>
-            <button class="desp-del" data-i="${i}" type="button" aria-label="Esborrar">&times;</button>
+            <button class="desp-del" data-id="${e.id}" type="button" aria-label="Esborrar">&times;</button>
           </li>`;
         })
         .join("")

@@ -7,7 +7,7 @@ import { initFrases } from "./phrases.js";
 import { initGame } from "./game.js";
 import { initChart } from "./chart.js";
 import { refreshRates } from "./rates.js";
-import { afegeixDespesa, treuDespesa, desaPersona } from "./expenses.js";
+import { afegeixDespesa, treuDespesa, desaPersona, sincronitza } from "./expenses.js";
 import {
   renderSelector,
   renderDetall,
@@ -149,7 +149,7 @@ function lligarEsdeveniments() {
     // Esborrar despesa
     const del = e.target.closest(".desp-del");
     if (del) {
-      treuDespesa(DAYS[estat.idx].date, Number(del.dataset.i));
+      treuDespesa(del.dataset.id);
       refrescaDespeses();
       return;
     }
@@ -168,7 +168,13 @@ function lligarEsdeveniments() {
   $("#tab-resum").addEventListener("click", () => {
     estat.vista = "resum";
     renderTot();
+    sincronitza().then((ok) => { if (ok && estat.vista === "resum") renderContingut(); });
   });
+
+  // Puja les despeses pendents quan torna la connexió o es reobre l'app.
+  const syncRefresca = () => sincronitza().then((ok) => { if (ok) renderContingut(); });
+  window.addEventListener("online", syncRefresca);
+  document.addEventListener("visibilitychange", () => { if (!document.hidden) syncRefresca(); });
 }
 
 async function inici() {
@@ -189,6 +195,8 @@ async function inici() {
     return;
   }
   renderTot();
+  // Sincronitza les despeses amb Supabase i refresca quan acabi.
+  sincronitza().then((ok) => { if (ok) renderContingut(); });
 }
 
 // Registre del service worker (PWA / offline).
