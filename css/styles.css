@@ -611,7 +611,6 @@ a { color: var(--aqua); }
 /* ---------- Busca mines ---------- */
 .game-card { width: 100%; max-width: min(94vw, 430px); }
 .game-levels { display: flex; align-items: center; gap: 6px; margin-bottom: 12px; }
-.game-lvl-label { flex: 0 0 auto; font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--mist-3); margin-right: 2px; }
 .lvl {
   flex: 1; padding: 8px;
   border: 1px solid var(--line); background: var(--ink-3);
