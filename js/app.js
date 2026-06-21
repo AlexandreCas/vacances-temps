@@ -58,7 +58,7 @@ function renderBanner() {
 }
 
 function renderSelectorDom() {
-  $("#selector").innerHTML = renderSelector(DAYS, estat.idx);
+  $("#selector").innerHTML = renderSelector(DAYS, estat.idx, resumDe);
   // centra el chip actiu
   const actiu = $("#selector .chip.actiu");
   if (actiu) actiu.scrollIntoView({ inline: "center", block: "nearest" });

@@ -83,6 +83,33 @@ export function recomanaRoba(p) {
   return { nivell, peces, maleta: [...maleta] };
 }
 
+// Xips visuals (icona + etiqueta) per a la vista de roba.
+// p: { feelsMax, precipProb, precipMm, uvIndex, wind, humitat, loc }
+export function chipsRoba(p) {
+  const f = p.feelsMax ?? 25;
+  const chips = [];
+
+  if (f >= 32) chips.push(["🥵", "Molt lleuger", "calor"]);
+  else if (f >= 27) chips.push(["👕", "Roba d'estiu", "calor"]);
+  else if (f >= 20) chips.push(["👕", "Estiu + capa fina", "ok"]);
+  else if (f >= 14) chips.push(["🧥", "Jaqueta lleugera", "fresc"]);
+  else chips.push(["🧣", "Abric / capes", "fred"]);
+
+  if ((p.precipProb ?? 0) >= 50 || (p.precipMm ?? 0) >= 2) chips.push(["☂️", "Paraigua", "pluja"]);
+  else if ((p.precipProb ?? 0) >= 25) chips.push(["🌂", "Per si plou", "pluja"]);
+
+  if ((p.uvIndex ?? 0) >= 8) chips.push(["🧴", "Protecció solar", "sol"]);
+  else if ((p.uvIndex ?? 0) >= 6) chips.push(["🧢", "Gorra", "sol"]);
+
+  if ((p.wind ?? 0) >= 35) chips.push(["🌬️", "Tallavent", "vent"]);
+  if ((p.humitat ?? 0) >= 75 && f >= 24) chips.push(["💦", "Recanvi samarreta", "humit"]);
+
+  if (p.loc === "maldives") chips.push(["🩱", "Banyador", "aigua"]);
+  if (p.loc === "koyasan") chips.push(["⛰️", "Capa per al vespre", "fresc"]);
+
+  return chips;
+}
+
 // Etiqueta curta per a la vista resum (un badge).
 export function badgeRoba(p) {
   const f = p.feelsMax ?? 25;

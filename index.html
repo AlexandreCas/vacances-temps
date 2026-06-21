@@ -3,31 +3,39 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <meta name="theme-color" content="#0f4c81" />
+  <meta name="theme-color" content="#0e1118" />
   <title>El Temps del Viatge · Japó + Maldives</title>
   <link rel="manifest" href="./manifest.webmanifest" />
   <link rel="apple-touch-icon" href="./icons/icon-192.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700;900&family=Zen+Old+Mincho:wght@400;600;700;900&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="./css/styles.css" />
 </head>
 <body>
   <header class="topbar">
-    <h1>🌏 El Temps del Viatge</h1>
-    <p class="subt">Japó &amp; Maldives · 23 jun – 12 jul 2026</p>
-    <div id="banner" class="banner"></div>
+    <div class="topbar-row">
+      <div>
+        <p class="trip-eyebrow">旅 · El diari del temps</p>
+        <h1>Japó &amp; Maldives</h1>
+      </div>
+      <div id="banner" class="banner"></div>
+    </div>
+    <p class="trip-dates">23 juny — 12 juliol 2026</p>
   </header>
 
   <nav id="selector" class="selector" aria-label="Selecció de dia"></nav>
 
   <div class="tabs">
-    <button id="tab-detall" class="tab actiu">📅 Dia</button>
-    <button id="tab-resum" class="tab">📋 Resum 10 dies</button>
+    <button id="tab-detall" class="tab actiu">El dia</button>
+    <button id="tab-resum" class="tab">La ruta · 10 dies</button>
   </div>
 
   <main id="contingut" class="contingut"></main>
 
   <footer class="peu">
-    <p>Dades de <a href="https://open-meteo.com" target="_blank" rel="noopener">Open-Meteo</a> ·
-    Previsió fiable ~7-10 dies; els dies més llunyans es van afinant.</p>
+    <p>Dades de <a href="https://open-meteo.com" target="_blank" rel="noopener">Open-Meteo</a>.
+    Fiable a ~7-10 dies; els dies llunyans s'afinen sols.</p>
   </footer>
 
   <script type="module" src="./js/app.js"></script>
