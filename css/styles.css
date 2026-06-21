@@ -74,7 +74,22 @@ a { color: var(--aqua); }
   font-size: 0.9rem;
   letter-spacing: 0.02em;
 }
-.banner { font-size: 0.72rem; text-align: right; padding-top: 6px; min-height: 1em; white-space: nowrap; }
+.topbar-right { display: flex; flex-direction: column; align-items: flex-end; gap: 6px; }
+.fx-btn {
+  width: 40px; height: 40px;
+  border-radius: 12px;
+  border: 1px solid var(--line-2);
+  background: var(--ink-2);
+  color: var(--mist);
+  font-family: var(--display);
+  font-size: 1rem; font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.12s, border-color 0.2s;
+}
+.fx-btn:active { transform: scale(0.94); }
+.fx-btn:hover { border-color: var(--vermilion); }
+
+.banner { font-size: 0.72rem; text-align: right; min-height: 1em; white-space: nowrap; }
 .banner.ok { color: var(--mist-3); }
 .banner.offline { color: var(--gold); font-weight: 700; }
 
@@ -533,6 +548,43 @@ a { color: var(--aqua); }
   .stats { grid-template-columns: repeat(6, 1fr); }
   .pack-list { grid-template-columns: 1fr 1fr; }
 }
+
+/* ---------- Modal calculadora ¥ / € ---------- */
+.fx-modal { position: fixed; inset: 0; z-index: 50; display: flex; align-items: center; justify-content: center; padding: 24px; }
+.fx-modal[hidden] { display: none; }
+.fx-backdrop { position: absolute; inset: 0; background: rgba(0, 0, 0, 0.6); backdrop-filter: blur(3px); }
+.fx-card {
+  position: relative;
+  width: 100%; max-width: 340px;
+  background: var(--ink-2);
+  border: 1px solid var(--line-2);
+  border-radius: 20px;
+  padding: 22px 20px 18px;
+  box-shadow: var(--shadow);
+}
+.fx-x {
+  position: absolute; top: 12px; right: 14px;
+  width: 30px; height: 30px;
+  border: 0; border-radius: 8px;
+  background: transparent; color: var(--mist-3);
+  font-size: 1.5rem; line-height: 1; cursor: pointer;
+}
+.fx-x:active { background: var(--ink-3); }
+.fx-field { display: flex; flex-direction: column; gap: 6px; margin-top: 4px; }
+.fx-field span { font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--mist-3); font-weight: 700; }
+.fx-field input {
+  width: 100%;
+  background: var(--ink-3);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 12px 14px;
+  color: var(--mist);
+  font-family: var(--display);
+  font-size: 1.6rem; font-weight: 600;
+}
+.fx-field input:focus { outline: none; border-color: var(--vermilion); }
+.fx-eq { text-align: center; font-size: 1.3rem; color: var(--mist-3); margin: 8px 0; }
+.fx-rate { margin: 16px 0 0; font-size: 0.76rem; color: var(--mist-3); text-align: center; }
 
 /* ---------- Pantalles grans (iPad / ordinador) ---------- */
 @media (min-width: 900px) {

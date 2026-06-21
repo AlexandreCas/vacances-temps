@@ -19,7 +19,10 @@
         <p class="trip-eyebrow">旅 · El diari del temps</p>
         <h1>Japó &amp; Maldives</h1>
       </div>
-      <div id="banner" class="banner"></div>
+      <div class="topbar-right">
+        <button id="fx-btn" class="fx-btn" type="button" aria-label="Calculadora ien / euro">¥€</button>
+        <div id="banner" class="banner"></div>
+      </div>
     </div>
     <p class="trip-dates">23 juny — 12 juliol 2026</p>
   </header>
@@ -37,6 +40,24 @@
     <p>Dades de <a href="https://open-meteo.com" target="_blank" rel="noopener">Open-Meteo</a>.
     Fiable a ~7-10 dies; els dies llunyans s'afinen sols.</p>
   </footer>
+
+  <div id="fx-modal" class="fx-modal" hidden>
+    <div class="fx-backdrop" data-close></div>
+    <div class="fx-card" role="dialog" aria-modal="true" aria-label="Calculadora ien / euro">
+      <button class="fx-x" type="button" data-close aria-label="Tancar">&times;</button>
+      <p class="kicker">Canvi ¥ / €</p>
+      <label class="fx-field">
+        <span>Iens ¥</span>
+        <input id="fx-jpy" type="number" inputmode="decimal" placeholder="0" />
+      </label>
+      <div class="fx-eq">=</div>
+      <label class="fx-field">
+        <span>Euros €</span>
+        <input id="fx-eur" type="number" inputmode="decimal" placeholder="0" />
+      </label>
+      <p id="fx-rate" class="fx-rate">Carregant tipus de canvi…</p>
+    </div>
+  </div>
 
   <script type="module" src="./js/app.js"></script>
 </body>
