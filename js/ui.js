@@ -20,6 +20,27 @@ function nomLloc(loc) {
   return m ? { main: m[1], sub: m[2] } : { main: loc.nom, sub: "" };
 }
 
+const PLA_ICONA = {
+  vol: "✈️", tren: "🚆", visita: "📍", apat: "🍜",
+  lliure: "🗺️", logistica: "⚠️", bugaderia: "🧺", nit: "🌙", allotjament: "🏨",
+};
+
+function renderPla(dia) {
+  if (!dia.pla || !dia.pla.length) return "";
+  const items = dia.pla
+    .map(
+      (it) => `<li class="plan-item plan--${it.t}">
+        <span class="pi-ico">${PLA_ICONA[it.t] || "•"}</span>
+        <span class="pi-txt">${it.txt}</span>
+      </li>`
+    )
+    .join("");
+  return `<section class="card plan">
+    <p class="kicker">Què faré avui</p>
+    <ul class="plan-list">${items}</ul>
+  </section>`;
+}
+
 function paramsRoba(dia, r, hores) {
   const humitat = hores.length ? Math.max(...hores.map((h) => h.humitat ?? 0)) : null;
   return {
@@ -134,7 +155,7 @@ export function renderDetall(dia, r, hores) {
     </div>
   </section>`;
 
-  return hero + wear + hourly + stats;
+  return hero + renderPla(dia) + wear + hourly + stats;
 }
 
 function renderSenseDades(dia, loc) {
@@ -152,7 +173,7 @@ function renderSenseDades(dia, loc) {
         </div>
       </div>
     </div>
-  </section>`;
+  </section>` + renderPla(dia);
 }
 
 // ---- Vista ruta (10 dies) com a línia de temps ----
