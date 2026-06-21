@@ -28,12 +28,18 @@ const PLA_ICONA = {
 function renderPla(dia) {
   if (!dia.pla || !dia.pla.length) return "";
   const items = dia.pla
-    .map(
-      (it) => `<li class="plan-item plan--${it.t}">
+    .map((it) => {
+      const tag =
+        it.inc === true
+          ? `<span class="pi-tag inc">inclòs</span>`
+          : it.inc === false
+          ? `<span class="pi-tag opc">no inclòs</span>`
+          : "";
+      return `<li class="plan-item plan--${it.t}">
         <span class="pi-ico">${PLA_ICONA[it.t] || "•"}</span>
-        <span class="pi-txt">${it.txt}</span>
-      </li>`
-    )
+        <span class="pi-txt">${it.txt}${tag}</span>
+      </li>`;
+    })
     .join("");
   return `<details class="card plan coll" open>
     <summary class="kicker">Què faré avui</summary>

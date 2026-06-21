@@ -334,6 +334,13 @@ a { color: var(--aqua); }
   font-size: 1.05rem;
 }
 .pi-txt { font-size: 0.9rem; line-height: 1.5; color: var(--mist); padding-top: 7px; }
+.pi-tag {
+  display: inline-block;
+  font-size: 0.6rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em;
+  padding: 2px 7px; border-radius: 6px; margin-left: 8px; white-space: nowrap; vertical-align: middle;
+}
+.pi-tag.inc { background: rgba(56, 200, 201, 0.16); color: var(--aqua); }
+.pi-tag.opc { background: rgba(242, 181, 59, 0.16); color: var(--gold); }
 .plan--logistica .pi-ico { background: rgba(242, 181, 59, 0.15); }
 .plan--logistica .pi-txt { color: var(--gold); }
 .plan--vol .pi-ico { background: rgba(91, 140, 196, 0.18); }
