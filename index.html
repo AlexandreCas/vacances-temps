@@ -20,7 +20,10 @@
         <h1>Japó &amp; Maldives</h1>
       </div>
       <div class="topbar-right">
-        <button id="fx-btn" class="fx-btn" type="button" aria-label="Calculadora ien / euro">¥€</button>
+        <div class="tb-actions">
+          <button id="ph-btn" class="icon-btn" type="button" aria-label="Frases en japonès">あ</button>
+          <button id="fx-btn" class="icon-btn" type="button" aria-label="Calculadora ien / euro">¥€</button>
+        </div>
         <div id="banner" class="banner"></div>
       </div>
     </div>
@@ -56,6 +59,15 @@
         <input id="fx-eur" type="number" inputmode="decimal" placeholder="0" />
       </label>
       <p id="fx-rate" class="fx-rate">Carregant tipus de canvi…</p>
+    </div>
+  </div>
+
+  <div id="ph-modal" class="fx-modal" hidden>
+    <div class="fx-backdrop" data-close></div>
+    <div class="fx-card ph-card" role="dialog" aria-modal="true" aria-label="Frases útils en japonès">
+      <button class="fx-x" type="button" data-close aria-label="Tancar">&times;</button>
+      <p class="kicker">Frases útils 日本語</p>
+      <div id="ph-list" class="ph-list"></div>
     </div>
   </div>
 

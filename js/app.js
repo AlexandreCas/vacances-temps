@@ -3,6 +3,7 @@ import { DAYS } from "./itinerary.js";
 import { carregarTemps, diaPerData, horesPerData } from "./weather.js";
 import { recomanaRoba } from "./clothing.js";
 import { initFX } from "./fx.js";
+import { initFrases } from "./phrases.js";
 import {
   renderSelector,
   renderDetall,
@@ -138,6 +139,7 @@ async function inici() {
   estat.idx = indexInicial();
   lligarEsdeveniments();
   initFX();
+  initFrases();
   renderEstatCarrega("⏳ Carregant la previsió del temps…");
   try {
     estat.temps = await carregarTemps();
