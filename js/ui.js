@@ -6,6 +6,9 @@ import {
   CATEGORIES, PERSONES, personaPredef, despesesDia,
   totalsPerMoneda, totalsPersonaDia, totalsViatge, totalsViatgePersona, catInfo,
 } from "./expenses.js";
+import { eurosDeTotals } from "./rates.js";
+
+const eur = (totals) => `≈ ${Math.round(eurosDeTotals(totals))} €`;
 
 export function formatImport(v, cur) {
   return cur === "¥" ? Math.round(v).toLocaleString("ca-ES") : v.toFixed(2);
@@ -144,7 +147,7 @@ export function renderDespeses(dia, obert = false) {
     : `<li class="desp-buit">Encara no hi ha despeses aquest dia.</li>`;
 
   return `<details class="card coll despeses" id="despeses-card"${obert ? " open" : ""}>
-    <summary class="kicker">Despeses${items.length ? ` · ${fmtTotals(totals)}` : ""}</summary>
+    <summary class="kicker">Despeses${items.length ? ` · ${fmtTotals(totals)} · ${eur(totals)}` : ""}</summary>
     <ul class="desp-list">${llista}</ul>
     ${items.length ? `<p class="desp-persones">${fmtPersones(perPersona)}</p>` : ""}
     <div class="desp-form">
@@ -161,10 +164,14 @@ export function renderResumDespeses() {
   const t = totalsViatge();
   if (!Object.keys(t).length) return "";
   const perPersona = totalsViatgePersona();
+  const persEur = PERSONES.filter((p) => Object.keys(perPersona[p]).length)
+    .map((p) => `<span class="desp-pers"><i>${p}</i> ${eur(perPersona[p])}</span>`)
+    .join("");
   return `<section class="card">
     <p class="kicker">Despeses del viatge</p>
-    <p class="desp-total-gran">${fmtTotals(t)}</p>
-    <p class="desp-persones">${fmtPersones(perPersona)}</p>
+    <p class="desp-total-gran">${eur(t)}</p>
+    <p class="desp-subtotal">${fmtTotals(t)}</p>
+    <p class="desp-persones">${persEur}</p>
   </section>`;
 }
 

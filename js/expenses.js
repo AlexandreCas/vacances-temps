@@ -13,12 +13,12 @@ export function desaPersona(p) {
 }
 
 export const CATEGORIES = [
-  { id: "menjar", ico: "🍜", nom: "Menjar" },
-  { id: "compres", ico: "🛍️", nom: "Compres" },
-  { id: "regal", ico: "🎁", nom: "Regal" },
-  { id: "transport", ico: "🚆", nom: "Transport" },
-  { id: "entrades", ico: "🎟️", nom: "Entrades" },
-  { id: "altres", ico: "💴", nom: "Altres" },
+  { id: "menjar", ico: "🍜", nom: "Menjar", color: "#e0573e" },
+  { id: "compres", ico: "🛍️", nom: "Compres", color: "#5b8cc4" },
+  { id: "regal", ico: "🎁", nom: "Regal", color: "#f2b53b" },
+  { id: "transport", ico: "🚆", nom: "Transport", color: "#38c8c9" },
+  { id: "entrades", ico: "🎟️", nom: "Entrades", color: "#9a7fd0" },
+  { id: "altres", ico: "💴", nom: "Altres", color: "#6f798c" },
 ];
 
 export function catInfo(id) {

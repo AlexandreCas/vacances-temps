@@ -5,6 +5,8 @@ import { recomanaRoba } from "./clothing.js";
 import { initFX } from "./fx.js";
 import { initFrases } from "./phrases.js";
 import { initGame } from "./game.js";
+import { initChart } from "./chart.js";
+import { refreshRates } from "./rates.js";
 import { afegeixDespesa, treuDespesa, desaPersona } from "./expenses.js";
 import {
   renderSelector,
@@ -175,6 +177,8 @@ async function inici() {
   initFX();
   initFrases();
   initGame();
+  initChart();
+  refreshRates();
   renderEstatCarrega("⏳ Carregant la previsió del temps…");
   try {
     estat.temps = await carregarTemps();

@@ -621,7 +621,26 @@ a { color: var(--aqua); }
 .desp-buit { color: var(--mist-3); font-size: 0.85rem; padding: 6px 0; }
 .desp-persones { margin: 4px 0 12px; display: flex; flex-wrap: wrap; gap: 14px; font-size: 0.8rem; color: var(--mist-2); }
 .desp-pers i { font-style: normal; color: var(--mist-3); margin-right: 5px; }
-.desp-total-gran { font-family: var(--display); font-weight: 600; font-size: 1.5rem; margin: 0 0 6px; }
+.desp-total-gran { font-family: var(--display); font-weight: 600; font-size: 1.7rem; margin: 0 0 2px; }
+.desp-subtotal { margin: 0 0 8px; font-size: 0.82rem; color: var(--mist-3); }
+
+/* ---------- Gràfic de despeses ---------- */
+.chart-card { width: 100%; max-width: min(94vw, 460px); }
+.chart-legend { display: flex; flex-wrap: wrap; gap: 8px 12px; margin-bottom: 16px; }
+.ch-leg { display: inline-flex; align-items: center; gap: 5px; font-size: 0.74rem; color: var(--mist-2); }
+.ch-leg i { width: 11px; height: 11px; border-radius: 3px; display: inline-block; }
+.chart-area { display: flex; gap: 14px; overflow-x: auto; padding-bottom: 6px; align-items: flex-end; }
+.chart-area::-webkit-scrollbar { height: 6px; }
+.ch-day { flex: 0 0 auto; display: flex; flex-direction: column; align-items: center; gap: 5px; }
+.ch-bars { display: flex; gap: 4px; align-items: flex-end; height: 172px; }
+.ch-barwrap { display: flex; flex-direction: column; align-items: center; justify-content: flex-end; height: 100%; }
+.ch-val { font-size: 0.6rem; color: var(--mist-3); margin-bottom: 3px; }
+.ch-bar { width: 20px; border-radius: 4px 4px 0 0; overflow: hidden; display: flex; flex-direction: column; background: var(--ink-3); }
+.ch-seg { width: 100%; }
+.ch-names { display: flex; gap: 4px; }
+.ch-names span { width: 20px; text-align: center; font-size: 0.6rem; color: var(--mist-3); }
+.ch-date { font-size: 0.7rem; color: var(--mist-2); }
+.chart-empty { color: var(--mist-3); text-align: center; font-size: 0.85rem; padding: 24px 0; }
 
 .desp-form { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
 .desp-amount { flex: 1 1 90px; min-width: 0; }
