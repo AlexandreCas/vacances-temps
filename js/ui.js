@@ -1,7 +1,7 @@
 // Helpers de render (generen HTML a partir de les dades).
 import { descriuCodi, iconaSVG, classePanell } from "./weather.js";
 import { recomanaRoba, chipsRoba } from "./clothing.js";
-import { LOCATIONS } from "./itinerary.js";
+import { LOCATIONS, hotelPerData } from "./itinerary.js";
 
 const DIES_SET = ["dg", "dl", "dt", "dc", "dj", "dv", "ds"];
 const MESOS = ["gen", "feb", "març", "abr", "maig", "juny", "jul", "ago", "set", "oct", "nov", "des"];
@@ -38,6 +38,26 @@ function renderPla(dia) {
   return `<section class="card plan">
     <p class="kicker">Què faré avui</p>
     <ul class="plan-list">${items}</ul>
+  </section>`;
+}
+
+function renderHotel(dia) {
+  const h = hotelPerData(dia.date);
+  if (!h) return "";
+  const nits = Math.round((new Date(h.checkout) - new Date(h.checkin)) / 86400000);
+  const maps =
+    "https://www.google.com/maps/search/?api=1&query=" +
+    encodeURIComponent(`${h.nom} ${h.ciutat}`);
+  return `<section class="card hotel">
+    <p class="kicker">On dormo</p>
+    <h3 class="wear-h">${h.nom}</h3>
+    <p class="hotel-addr">📍 ${h.adreca}</p>
+    <div class="hotel-meta">
+      <span><i>Entrada</i>${formatData(h.checkin, true)}</span>
+      <span><i>Sortida</i>${formatData(h.checkout, true)}</span>
+      <span><i>Nits</i>${nits}</span>
+    </div>
+    <a class="hotel-map" href="${maps}" target="_blank" rel="noopener">Obrir al mapa ↗</a>
   </section>`;
 }
 
@@ -155,7 +175,7 @@ export function renderDetall(dia, r, hores) {
     </div>
   </section>`;
 
-  return hero + renderPla(dia) + wear + hourly + stats;
+  return hero + renderPla(dia) + renderHotel(dia) + wear + stats + hourly;
 }
 
 function renderSenseDades(dia, loc) {
@@ -173,7 +193,7 @@ function renderSenseDades(dia, loc) {
         </div>
       </div>
     </div>
-  </section>` + renderPla(dia);
+  </section>` + renderPla(dia) + renderHotel(dia);
 }
 
 // ---- Vista ruta (10 dies) com a línia de temps ----

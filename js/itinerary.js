@@ -2,6 +2,8 @@
 // Cada dia s'associa a una ubicació (per al temps) i a un pla d'activitats.
 
 export const LOCATIONS = {
+  abudhabi:  { nom: "Abu Dhabi",            lat: 24.4539, lon: 54.3773,  tz: "Asia/Dubai",
+               nota: "Desert: calor extrema i sol molt fort (escala del vol)." },
   kyoto:     { nom: "Kyoto",                lat: 34.9858, lon: 135.7588, tz: "Asia/Tokyo" },
   hiroshima: { nom: "Hiroshima",            lat: 34.3975, lon: 132.4754, tz: "Asia/Tokyo" },
   koyasan:   { nom: "Koyasan (Mont Koya)",  lat: 34.2131, lon: 135.5847, tz: "Asia/Tokyo",
@@ -18,7 +20,7 @@ export const LOCATIONS = {
 // pla[].t (tipus): vol | tren | visita | apat | lliure | logistica | bugaderia | nit | allotjament
 export const DAYS = [
   {
-    date: "2026-06-23", loc: "kyoto", hotel: "Vol d'arribada a Japó", type: "viatge",
+    date: "2026-06-23", loc: "abudhabi", hotel: "Vol BCN → Abu Dhabi", type: "viatge",
     pla: [
       { t: "logistica", txt: "Sigues a la T1 de Barcelona 3 h abans (enlairament 10:45h)." },
       { t: "vol", txt: "Vol EY112 d'Etihad cap a Abu Dhabi. Nit a bord cap a Àsia." },
@@ -179,6 +181,42 @@ export const DAYS = [
     ],
   },
 ];
+
+// Hotels contractats. Cada hotel cobreix les nits [checkin, checkout).
+export const HOTELS = [
+  { nom: "Kyoto Century Hotel", ciutat: "Kyoto",
+    adreca: "680 Higashishiokojicho, Shimogyo Ward, Kyoto 600-8216",
+    checkin: "2026-06-24", checkout: "2026-06-27" },
+  { nom: "Hotel Granvia Hiroshima", ciutat: "Hiroshima",
+    adreca: "1-5 Matsubaracho, Minami Ward, Hiroshima 732-0822",
+    checkin: "2026-06-27", checkout: "2026-06-29" },
+  { nom: "Sekisho-in Temple (allotjament de pelegrins)", ciutat: "Koyasan",
+    adreca: "571 Koyasan, Koya, Ito District, Wakayama 648-0211",
+    checkin: "2026-06-29", checkout: "2026-06-30" },
+  { nom: "Fujiya Ryokan", ciutat: "Kyoto",
+    adreca: "735 Higashishiokojicho, Shimogyo Ward, Kyoto 600-8216",
+    checkin: "2026-06-30", checkout: "2026-07-01" },
+  { nom: "Citadines Namba Osaka", ciutat: "Osaka",
+    adreca: "3-5-25 Nipponbashi, Naniwa Ward, Osaka 556-0005",
+    checkin: "2026-07-01", checkout: "2026-07-02" },
+  { nom: "Kanazawa Tokyu Hotel", ciutat: "Kanazawa",
+    adreca: "2-1-1 Korinbo, Kanazawa, Ishikawa 920-0961",
+    checkin: "2026-07-02", checkout: "2026-07-03" },
+  { nom: "Tokyu Stay Hida Takayama Musubi no Yu", ciutat: "Takayama, Gifu",
+    adreca: "Takayama (Hida), Gifu",
+    checkin: "2026-07-03", checkout: "2026-07-04" },
+  { nom: "Grand Nikko Tokyo Daiba", ciutat: "Tòquio",
+    adreca: "2-6-1 Daiba, Minato City, Tokyo 135-8701",
+    checkin: "2026-07-04", checkout: "2026-07-07" },
+  { nom: "Joy Island Maldives by The Cocoon Collection", ciutat: "Maldives",
+    adreca: "Kaasfushi, Malé 20026, Maldives",
+    checkin: "2026-07-08", checkout: "2026-07-11" },
+];
+
+// Retorna l'hotel on es dorm la nit d'una data (o null si és dia de vol/trànsit).
+export function hotelPerData(date) {
+  return HOTELS.find((h) => date >= h.checkin && date < h.checkout) || null;
+}
 
 // Llista única de localitzacions presents a l'itinerari (per a les crides al temps).
 export function localitzacionsUniques() {
