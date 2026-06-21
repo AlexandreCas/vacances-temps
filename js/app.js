@@ -155,6 +155,13 @@ if ("serviceWorker" in navigator) {
   window.addEventListener("load", () => {
     navigator.serviceWorker.register("./sw.js").catch(() => {});
   });
+  // Quan s'activa una versió nova, recarrega automàticament (una sola vegada).
+  let recarregant = false;
+  navigator.serviceWorker.addEventListener("controllerchange", () => {
+    if (recarregant) return;
+    recarregant = true;
+    window.location.reload();
+  });
 }
 
 inici();
