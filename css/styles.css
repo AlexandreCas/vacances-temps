@@ -1,0 +1,180 @@
+:root {
+  --blau: #0f4c81;
+  --blau-clar: #2a6db0;
+  --fons: #f3f6fb;
+  --carta: #ffffff;
+  --text: #1a2330;
+  --suau: #6b7785;
+  --vora: #e2e8f0;
+  --ok: #1f8a4c;
+  --avis: #c2410c;
+  --ombra: 0 2px 10px rgba(15, 76, 129, 0.08);
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background: var(--fons);
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+/* ---- Capçalera ---- */
+.topbar {
+  background: linear-gradient(135deg, var(--blau), var(--blau-clar));
+  color: #fff;
+  padding: calc(env(safe-area-inset-top) + 14px) 16px 14px;
+  text-align: center;
+}
+.topbar h1 { margin: 0; font-size: 1.25rem; }
+.subt { margin: 2px 0 0; opacity: 0.9; font-size: 0.82rem; }
+
+.banner { font-size: 0.78rem; margin-top: 8px; min-height: 1em; }
+.banner.ok { color: #d6f5e3; }
+.banner.offline { color: #ffe2c2; font-weight: 600; }
+
+/* ---- Selector de dies ---- */
+.selector {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding: 12px 16px;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+.selector::-webkit-scrollbar { display: none; }
+.chip {
+  flex: 0 0 auto;
+  border: 1px solid var(--vora);
+  background: var(--carta);
+  border-radius: 14px;
+  padding: 8px 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  cursor: pointer;
+  font: inherit;
+  min-width: 62px;
+  transition: transform 0.1s;
+}
+.chip:active { transform: scale(0.96); }
+.chip-data { font-size: 0.72rem; color: var(--suau); }
+.chip-ciutat { font-size: 0.8rem; font-weight: 600; }
+.chip.actiu { background: var(--blau); border-color: var(--blau); color: #fff; }
+.chip.actiu .chip-data { color: #cfe0f2; }
+.chip.viatge { border-style: dashed; }
+
+/* ---- Tabs ---- */
+.tabs { display: flex; gap: 8px; padding: 0 16px; }
+.tab {
+  flex: 1;
+  padding: 9px;
+  border: 1px solid var(--vora);
+  background: var(--carta);
+  border-radius: 10px;
+  font: inherit;
+  font-weight: 600;
+  color: var(--suau);
+  cursor: pointer;
+}
+.tab.actiu { background: var(--blau); color: #fff; border-color: var(--blau); }
+
+/* ---- Contingut ---- */
+.contingut { padding: 14px 16px 8px; max-width: 720px; margin: 0 auto; }
+.card {
+  background: var(--carta);
+  border-radius: 16px;
+  box-shadow: var(--ombra);
+  padding: 16px;
+  margin-bottom: 14px;
+}
+.avis p { margin: 0; color: var(--suau); }
+.sense-dades { line-height: 1.5; }
+
+/* ---- Detall ---- */
+.detall-cap { display: flex; justify-content: space-between; gap: 12px; align-items: flex-start; }
+.detall-cap h2 { margin: 0; font-size: 1.05rem; }
+.hotel { margin: 4px 0 0; color: var(--suau); font-size: 0.85rem; }
+.tag-viatge { font-size: 0.7rem; background: #fef3c7; color: #92400e; padding: 2px 6px; border-radius: 6px; white-space: nowrap; }
+.cond-gran { text-align: center; }
+.icona-gran { font-size: 2.4rem; display: block; line-height: 1; }
+.cond-text { font-size: 0.72rem; color: var(--suau); }
+
+.metriques {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  margin: 14px 0 6px;
+}
+.m { background: var(--fons); border-radius: 10px; padding: 8px; text-align: center; }
+.m-val { display: block; font-size: 1.15rem; font-weight: 700; color: var(--blau); }
+.m-lab { font-size: 0.68rem; color: var(--suau); }
+
+.nota-lloc { font-size: 0.8rem; color: var(--avis); background: #fff7ed; padding: 8px 10px; border-radius: 8px; margin: 10px 0 0; }
+
+.roba { margin-top: 14px; }
+.roba h3, .hores-wrap h3, .maleta h3 { margin: 0 0 8px; font-size: 0.95rem; }
+.roba ul, .maleta ul { margin: 0; padding-left: 18px; line-height: 1.55; font-size: 0.9rem; }
+
+/* ---- Hores ---- */
+.hores-wrap { margin-top: 16px; }
+.hores { display: flex; gap: 10px; overflow-x: auto; padding-bottom: 6px; scrollbar-width: none; }
+.hores::-webkit-scrollbar { display: none; }
+.hora {
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  background: var(--fons);
+  border-radius: 10px;
+  padding: 8px 10px;
+  min-width: 54px;
+}
+.h-hora { font-size: 0.72rem; color: var(--suau); }
+.h-icona { font-size: 1.2rem; }
+.h-temp { font-weight: 700; }
+.h-pluja { font-size: 0.68rem; color: var(--blau-clar); }
+
+/* ---- Resum ---- */
+.fila-resum {
+  width: 100%;
+  display: grid;
+  grid-template-columns: auto 1fr auto auto auto;
+  grid-template-areas:
+    "data ciutat icona temp pluja"
+    "badge badge badge badge badge";
+  gap: 4px 10px;
+  align-items: center;
+  background: var(--carta);
+  border: 1px solid var(--vora);
+  border-radius: 12px;
+  padding: 10px 12px;
+  margin-bottom: 8px;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+.fila-resum:active { background: var(--fons); }
+.fr-data { grid-area: data; font-size: 0.78rem; color: var(--suau); white-space: nowrap; }
+.fr-ciutat { grid-area: ciutat; font-weight: 600; font-size: 0.9rem; }
+.fr-icona { grid-area: icona; font-size: 1.3rem; }
+.fr-temp { grid-area: temp; font-weight: 700; white-space: nowrap; }
+.fr-pluja { grid-area: pluja; font-size: 0.78rem; color: var(--blau-clar); white-space: nowrap; }
+.fr-badge { grid-area: badge; font-size: 0.74rem; color: var(--suau); }
+.fila-resum.buida { opacity: 0.6; }
+
+/* ---- Maleta ---- */
+.maleta { margin-top: 6px; }
+
+/* ---- Peu ---- */
+.peu { text-align: center; padding: 8px 16px 24px; color: var(--suau); font-size: 0.72rem; }
+.peu a { color: var(--blau-clar); }
+
+@media (min-width: 600px) {
+  .metriques { grid-template-columns: repeat(6, 1fr); }
+}

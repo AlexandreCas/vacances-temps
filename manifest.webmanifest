@@ -1,0 +1,16 @@
+{
+  "name": "El Temps del Viatge · Japó + Maldives",
+  "short_name": "Temps Viatge",
+  "description": "Previsió del temps i recomanacions de roba per al viatge a Japó i Maldives.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#0f4c81",
+  "theme_color": "#0f4c81",
+  "lang": "ca",
+  "icons": [
+    { "src": "./icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any maskable" },
+    { "src": "./icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+  ]
+}
