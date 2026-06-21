@@ -1,7 +1,13 @@
 // Busca mines — joc senzill dins d'un modal, optimitzat per a mòbil.
-const ROWS = 9;
-const COLS = 9;
-const MINES = 10;
+const NIVELLS = {
+  facil:   { r: 9,  c: 9,  m: 10 },
+  mitja:   { r: 12, c: 12, m: 22 },
+  dificil: { r: 14, c: 14, m: 35 },
+};
+const NIVELL_KEY = "vacances-mines-nivell";
+
+let nivell = "facil";
+let ROWS = 9, COLS = 9, MINES = 10;
 
 let board = [];
 let started = false;
@@ -27,6 +33,10 @@ function veins(i) {
 }
 
 function nova() {
+  const cfg = NIVELLS[nivell] || NIVELLS.facil;
+  ROWS = cfg.r;
+  COLS = cfg.c;
+  MINES = cfg.m;
   board = Array.from({ length: ROWS * COLS }, () => ({ mine: false, rev: false, flag: false, adj: 0 }));
   started = false;
   over = false;
@@ -98,6 +108,7 @@ function actualitzaMines() {
 
 function pinta() {
   elBoard.style.gridTemplateColumns = `repeat(${COLS}, 1fr)`;
+  elBoard.style.setProperty("--cell-fs", COLS >= 12 ? "0.72rem" : "0.95rem");
   elBoard.innerHTML = board
     .map((c, i) => {
       let cls = "cell";
@@ -145,6 +156,22 @@ export function initGame() {
     flagMode = !flagMode;
     elFlag.setAttribute("aria-pressed", String(flagMode));
   });
+
+  // Selector de nivell.
+  nivell = localStorage.getItem(NIVELL_KEY) || "facil";
+  const botonsNivell = modal.querySelectorAll(".lvl");
+  function marcaNivell() {
+    botonsNivell.forEach((b) => b.classList.toggle("actiu", b.dataset.lvl === nivell));
+  }
+  marcaNivell();
+  botonsNivell.forEach((b) =>
+    b.addEventListener("click", () => {
+      nivell = b.dataset.lvl;
+      try { localStorage.setItem(NIVELL_KEY, nivell); } catch (_) {}
+      marcaNivell();
+      nova();
+    })
+  );
 
   // Clic / toc per descobrir.
   elBoard.addEventListener("click", (e) => {

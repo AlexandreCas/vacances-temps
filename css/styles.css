@@ -609,7 +609,15 @@ a { color: var(--aqua); }
 .ph-ca { font-size: 0.85rem; color: var(--mist-2); text-align: right; align-self: center; max-width: 48%; }
 
 /* ---------- Busca mines ---------- */
-.game-card { max-width: 360px; }
+.game-card { width: 100%; max-width: min(94vw, 430px); }
+.game-levels { display: flex; gap: 6px; margin-bottom: 12px; }
+.lvl {
+  flex: 1; padding: 8px;
+  border: 1px solid var(--line); background: var(--ink-3);
+  border-radius: 10px; color: var(--mist-3);
+  font: inherit; font-weight: 700; font-size: 0.82rem; cursor: pointer;
+}
+.lvl.actiu { background: var(--ink); border-color: var(--vermilion); color: var(--mist); box-shadow: inset 0 0 0 1px var(--vermilion); }
 .game-bar { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
 .game-stat { font-family: var(--display); font-weight: 600; font-size: 1.1rem; min-width: 60px; }
 .game-reset, .game-flag {
@@ -625,7 +633,7 @@ a { color: var(--aqua); }
   width: 100%; aspect-ratio: 1;
   padding: 0; border: 1px solid var(--line-2);
   background: var(--ink-3); border-radius: 6px;
-  font-weight: 800; font-size: 0.95rem; color: var(--mist);
+  font-weight: 800; font-size: var(--cell-fs, 0.95rem); color: var(--mist);
   display: flex; align-items: center; justify-content: center;
   cursor: pointer;
 }
