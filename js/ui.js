@@ -1,7 +1,7 @@
 // Helpers de render (generen HTML a partir de les dades).
 import { descriuCodi, iconaSVG, classePanell } from "./weather.js";
 import { recomanaRoba, chipsRoba } from "./clothing.js";
-import { LOCATIONS, hotelPerData } from "./itinerary.js";
+import { LOCATIONS, hotelPerData, FLIGHTS } from "./itinerary.js";
 
 const DIES_SET = ["dg", "dl", "dt", "dc", "dj", "dv", "ds"];
 const MESOS = ["gen", "feb", "març", "abr", "maig", "juny", "jul", "ago", "set", "oct", "nov", "des"];
@@ -41,6 +41,36 @@ function renderPla(dia) {
   </section>`;
 }
 
+function renderVols(dia) {
+  const f = FLIGHTS[dia.date];
+  if (!f) return "";
+  const segs = f.segs
+    .map(
+      (s) => `<div class="flight">
+        <div class="fl-num">✈️ ${s.num}</div>
+        <div class="fl-route">
+          <div class="fl-pt">
+            <span class="fl-time">${s.surt}</span>
+            <span class="fl-air">${s.de}</span>
+            <span class="fl-term">${s.t1 || ""}</span>
+          </div>
+          <div class="fl-line"><span>${s.dur || ""}</span></div>
+          <div class="fl-pt fl-pt--end">
+            <span class="fl-time">${s.arr}</span>
+            <span class="fl-air">${s.a}</span>
+            <span class="fl-term">${s.t2 || ""}</span>
+          </div>
+        </div>
+      </div>`
+    )
+    .join("");
+  return `<section class="card flights">
+    <p class="kicker">Vols</p>
+    ${segs}
+    ${f.nota ? `<p class="fl-nota">${f.nota}</p>` : ""}
+  </section>`;
+}
+
 function renderHotel(dia) {
   const h = hotelPerData(dia.date);
   if (!h) return "";
@@ -48,6 +78,11 @@ function renderHotel(dia) {
   const maps =
     "https://www.google.com/maps/search/?api=1&query=" +
     encodeURIComponent(`${h.nom} ${h.ciutat}`);
+  const links = [
+    `<a href="${maps}" target="_blank" rel="noopener">Mapa ↗</a>`,
+    h.web ? `<a href="${h.web}" target="_blank" rel="noopener">Web ↗</a>` : "",
+    h.tel ? `<a href="tel:${h.tel.replace(/\s/g, "")}">Trucar</a>` : "",
+  ].join("");
   return `<section class="card hotel">
     <p class="kicker">On dormo</p>
     <h3 class="wear-h">${h.nom}</h3>
@@ -57,7 +92,7 @@ function renderHotel(dia) {
       <span><i>Sortida</i>${formatData(h.checkout, true)}</span>
       <span><i>Nits</i>${nits}</span>
     </div>
-    <a class="hotel-map" href="${maps}" target="_blank" rel="noopener">Obrir al mapa ↗</a>
+    <div class="hotel-links">${links}</div>
   </section>`;
 }
 
@@ -175,7 +210,7 @@ export function renderDetall(dia, r, hores) {
     </div>
   </section>`;
 
-  return hero + renderPla(dia) + renderHotel(dia) + wear + stats + hourly;
+  return hero + renderPla(dia) + renderVols(dia) + renderHotel(dia) + wear + stats + hourly;
 }
 
 function renderSenseDades(dia, loc) {
@@ -193,7 +228,7 @@ function renderSenseDades(dia, loc) {
         </div>
       </div>
     </div>
-  </section>` + renderPla(dia) + renderHotel(dia);
+  </section>` + renderPla(dia) + renderVols(dia) + renderHotel(dia);
 }
 
 // ---- Vista ruta (10 dies) com a línia de temps ----

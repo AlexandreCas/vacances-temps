@@ -8,6 +8,8 @@ export const LOCATIONS = {
   hiroshima: { nom: "Hiroshima",            lat: 34.3975, lon: 132.4754, tz: "Asia/Tokyo" },
   koyasan:   { nom: "Koyasan (Mont Koya)",  lat: 34.2131, lon: 135.5847, tz: "Asia/Tokyo",
                nota: "Muntanya (~800 m): les nits hi són força més fresques." },
+  kawayu:    { nom: "Kawayu Onsen",          lat: 33.8400, lon: 135.7750, tz: "Asia/Tokyo",
+               nota: "Termes de muntanya (Kumano): vespres frescos vora el riu." },
   osaka:     { nom: "Osaka (Namba)",        lat: 34.6655, lon: 135.5028, tz: "Asia/Tokyo" },
   kanazawa:  { nom: "Kanazawa",             lat: 36.5786, lon: 136.6489, tz: "Asia/Tokyo" },
   takayama:  { nom: "Takayama (Hida)",      lat: 36.1408, lon: 137.2520, tz: "Asia/Tokyo",
@@ -78,7 +80,7 @@ export const DAYS = [
     ],
   },
   {
-    date: "2026-06-30", loc: "kyoto", hotel: "Fujiya Ryokan (Kyoto)", type: "estada",
+    date: "2026-06-30", loc: "kawayu", hotel: "Fujiya Ryokan (Kawayu Onsen)", type: "estada",
     pla: [
       { t: "visita", txt: "Cants dels monjos al matí." },
       { t: "visita", txt: "Kumano Kodo (passeig d'1 h pel bosc) i santuari Kumano Hongu Taisha." },
@@ -185,28 +187,36 @@ export const DAYS = [
 // Hotels contractats. Cada hotel cobreix les nits [checkin, checkout).
 export const HOTELS = [
   { nom: "Kyoto Century Hotel", ciutat: "Kyoto",
-    adreca: "680 Higashishiokojicho, Shimogyo Ward, Kyoto 600-8216",
+    adreca: "680 Higashi Shiokoji-cho, Shiokoji Sagaru, Higashinotoindori, Shimogyo-ku, Kyoto 600-8216",
+    tel: "+81 75 351 0111", web: "http://www.kyoto-centuryhotel.co.jp/",
     checkin: "2026-06-24", checkout: "2026-06-27" },
-  { nom: "Hotel Granvia Hiroshima", ciutat: "Hiroshima",
-    adreca: "1-5 Matsubaracho, Minami Ward, Hiroshima 732-0822",
+  { nom: "Granvia Hiroshima", ciutat: "Hiroshima",
+    adreca: "1-5 Matsubaracho, Minami-ku, Hiroshima 732-0822",
+    tel: "+81 82 262 1111", web: "http://www.hgh.co.jp/english/",
     checkin: "2026-06-27", checkout: "2026-06-29" },
-  { nom: "Sekisho-in Temple (allotjament de pelegrins)", ciutat: "Koyasan",
-    adreca: "571 Koyasan, Koya, Ito District, Wakayama 648-0211",
+  { nom: "Sekisho-in (habitació japonesa)", ciutat: "Koyasan",
+    adreca: "571 Koya-cho, Koyasan, Ito-gun, Wakayama 648-0211",
+    tel: "+81 736 56 2734", web: "http://www.sekishoin.jp/",
     checkin: "2026-06-29", checkout: "2026-06-30" },
-  { nom: "Fujiya Ryokan", ciutat: "Kyoto",
-    adreca: "735 Higashishiokojicho, Shimogyo Ward, Kyoto 600-8216",
+  { nom: "Fujiya Ryokan (habitació japonesa)", ciutat: "Kawayu Onsen",
+    adreca: "1452 Kawayu, Hongu-cho, Tanabe-shi, Wakayama 647-1717",
+    tel: "+81 735 42 0007", web: "http://www.fuziya.co.jp/",
     checkin: "2026-06-30", checkout: "2026-07-01" },
-  { nom: "Citadines Namba Osaka", ciutat: "Osaka",
-    adreca: "3-5-25 Nipponbashi, Naniwa Ward, Osaka 556-0005",
+  { nom: "Citadines Namba Osaka (Deluxe)", ciutat: "Osaka",
+    adreca: "Nihonbashi 3-5-25, Naniwa-ku, Osaka 556-0005",
+    tel: "+81 6 6695 7150", web: "https://www.citadines.com/en/japan/osaka/citadines-namba-osaka.html",
     checkin: "2026-07-01", checkout: "2026-07-02" },
   { nom: "Kanazawa Tokyu Hotel", ciutat: "Kanazawa",
-    adreca: "2-1-1 Korinbo, Kanazawa, Ishikawa 920-0961",
+    adreca: "2-1-1 Korinbo, Kanazawa-shi, Ishikawa 920-0961",
+    tel: "+81 76 231 2411", web: "https://www.tokyuhotelsjapan.com/global/kanazawa-h/index.html",
     checkin: "2026-07-02", checkout: "2026-07-03" },
   { nom: "Tokyu Stay Hida Takayama Musubi no Yu", ciutat: "Takayama, Gifu",
-    adreca: "Takayama (Hida), Gifu",
+    adreca: "4-301 Hanasato-machi, Takayama-shi, Gifu 506-0026",
+    tel: "+81 577 36 1109", web: "https://www.tokyustay.co.jp/e/hotel/HTM/",
     checkin: "2026-07-03", checkout: "2026-07-04" },
   { nom: "Grand Nikko Tokyo Daiba", ciutat: "Tòquio",
-    adreca: "2-6-1 Daiba, Minato City, Tokyo 135-8701",
+    adreca: "2-6-1 Daiba, Minato-ku, Tokyo 135-8701",
+    tel: "+81 3 5500 6711", web: "http://www.tokyo.grand-nikko.com/eng/",
     checkin: "2026-07-04", checkout: "2026-07-07" },
   { nom: "Joy Island Maldives by The Cocoon Collection", ciutat: "Maldives",
     adreca: "Kaasfushi, Malé 20026, Maldives",
@@ -217,6 +227,33 @@ export const HOTELS = [
 export function hotelPerData(date) {
   return HOTELS.find((h) => date >= h.checkin && date < h.checkout) || null;
 }
+
+// Vols per data de sortida. "(+1)" = arriba l'endemà.
+export const FLIGHTS = {
+  "2026-06-23": {
+    segs: [
+      { num: "EY112 · Etihad", de: "Barcelona BCN", t1: "T1", surt: "10:45", a: "Abu Dhabi AUH", t2: "Term. A", arr: "19:20", dur: "6h35" },
+      { num: "EY814 · Etihad", de: "Abu Dhabi AUH", t1: "Term. A", surt: "21:10", a: "Osaka KIX", t2: "T1", arr: "11:50 (+1)", dur: "9h40" },
+    ],
+  },
+  "2026-07-07": {
+    nota: "Equipatge: 20 kg facturat + 7 kg de mà per persona. Escala a Kuala Lumpur de 2h25.",
+    segs: [
+      { num: "D7523 · AirAsia", de: "Tòquio Haneda HND", t1: "T3", surt: "23:50", a: "Kuala Lumpur KUL", t2: "T2", arr: "06:10 (+1)", dur: "7h20" },
+      { num: "AK74 · AirAsia", de: "Kuala Lumpur KUL", t1: "T2", surt: "08:35 (+1)", a: "Malé MLE", t2: "T1", arr: "09:50 (+1)", dur: "4h15" },
+    ],
+  },
+  "2026-07-11": {
+    segs: [
+      { num: "EY377 · Etihad", de: "Malé MLE", t1: "T1", surt: "21:25", a: "Abu Dhabi AUH", t2: "Term. A", arr: "00:25 (+1)", dur: "4h00" },
+    ],
+  },
+  "2026-07-12": {
+    segs: [
+      { num: "EY111 · Etihad", de: "Abu Dhabi AUH", t1: "Term. A", surt: "02:30", a: "Barcelona BCN", t2: "T1", arr: "07:35", dur: "7h05" },
+    ],
+  },
+};
 
 // Llista única de localitzacions presents a l'itinerari (per a les crides al temps).
 export function localitzacionsUniques() {
