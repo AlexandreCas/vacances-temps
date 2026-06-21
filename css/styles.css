@@ -178,6 +178,13 @@ a { color: var(--aqua); }
   border-radius: 2px;
   margin-right: 9px;
 }
+.kicker-sub {
+  margin-left: 8px;
+  color: var(--mist-3);
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: none;
+}
 
 /* ---------- Icones ---------- */
 .ico { display: inline-block; vertical-align: middle; }

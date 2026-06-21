@@ -190,7 +190,7 @@ export function renderDetall(dia, r, hores) {
 
   const hourly = hores.length
     ? `<section class="card">
-        <p class="kicker">Hora a hora</p>
+        <p class="kicker">Hora a hora <span class="kicker-sub">hora local</span></p>
         <div class="hours">${filesHores}</div>
       </section>`
     : "";
