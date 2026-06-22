@@ -263,7 +263,7 @@ export const FLIGHTS = {
   "2026-07-07": {
     nota: "Equipatge: 20 kg facturat + 7 kg de mà per persona. Escala a Kuala Lumpur de 2h25.",
     segs: [
-      { num: "D7523 · AirAsia", de: "Tòquio Haneda HND", t1: "T3", surt: "23:50", a: "Kuala Lumpur KUL", t2: "T2", arr: "06:10 (+1)", dur: "7h20" },
+      { num: "D7523 · AirAsia", de: "Tòquio Haneda HND", t1: "T3", surt: "23:50", a: "Kuala Lumpur KUL", t2: "T2", arr: "06:10 (+1)", dur: "7h20", seients: "17A · 17B · 17C" },
       { num: "AK74 · AirAsia", de: "Kuala Lumpur KUL", t1: "T2", surt: "08:35 (+1)", a: "Malé MLE", t2: "T1", arr: "09:50 (+1)", dur: "4h15" },
     ],
   },
