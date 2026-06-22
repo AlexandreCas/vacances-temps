@@ -46,6 +46,23 @@ export const FRASES = [
     ],
   },
   {
+    grup: "Imprescindibles",
+    items: [
+      { jp: "寿司", ro: "Sushi", ca: "⭐ El clàssic: arròs i peix cru" },
+      { jp: "ラーメン", ro: "Rāmen", ca: "⭐ Sopa de fideus (mil versions)" },
+      { jp: "天ぷら", ro: "Tempura", ca: "⭐ Arrebossat lleuger i fregit" },
+      { jp: "とんかつ", ro: "Tonkatsu", ca: "⭐ Filet de porc cruixent" },
+      { jp: "お好み焼き", ro: "Okonomiyaki", ca: "⭐ Coca salada (Osaka i Hiroshima)" },
+      { jp: "たこ焼き", ro: "Takoyaki", ca: "⭐ Boletes de pop (Osaka)" },
+      { jp: "焼き鳥", ro: "Yakitori", ca: "⭐ Broquetes de pollastre a la brasa" },
+      { jp: "餃子", ro: "Gyōza", ca: "⭐ Dumplings a la planxa" },
+      { jp: "和牛", ro: "Wagyū", ca: "⭐ Vedella japonesa premium (Kobe…)" },
+      { jp: "うなぎ", ro: "Unagi", ca: "⭐ Anguila a la brasa amb salsa" },
+      { jp: "抹茶", ro: "Matcha", ca: "⭐ Te verd en pols (i postres)" },
+      { jp: "大福", ro: "Daifuku", ca: "⭐ Mochi dolç farcit" },
+    ],
+  },
+  {
     grup: "Tipus de menjar",
     items: [
       { jp: "寿司", ro: "Sushi", ca: "Arròs avinagrat amb peix cru" },
