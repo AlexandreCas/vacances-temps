@@ -114,6 +114,14 @@ function refrescaDespeses() {
   card.outerHTML = renderDespeses(DAYS[estat.idx], true);
 }
 
+// Redibuixa el contingut, però NO si l'usuari està escrivint en un camp
+// (evita que la sincronització faci desaparèixer el teclat a mig editar).
+function refrescaSegur() {
+  const ae = document.activeElement;
+  if (ae && ae.matches && ae.matches("#contingut input, #contingut select, #contingut textarea")) return;
+  renderContingut();
+}
+
 function renderTot() {
   renderBanner();
   renderSelectorDom();
@@ -168,11 +176,11 @@ function lligarEsdeveniments() {
   $("#tab-resum").addEventListener("click", () => {
     estat.vista = "resum";
     renderTot();
-    sincronitza().then((ok) => { if (ok && estat.vista === "resum") renderContingut(); });
+    sincronitza().then((ok) => { if (ok && estat.vista === "resum") refrescaSegur(); });
   });
 
   // Puja les despeses pendents quan torna la connexió o es reobre l'app.
-  const syncRefresca = () => sincronitza().then((ok) => { if (ok) renderContingut(); });
+  const syncRefresca = () => sincronitza().then((ok) => { if (ok) refrescaSegur(); });
   window.addEventListener("online", syncRefresca);
   document.addEventListener("visibilitychange", () => { if (!document.hidden) syncRefresca(); });
 }
@@ -196,7 +204,7 @@ async function inici() {
   }
   renderTot();
   // Sincronitza les despeses amb Supabase i refresca quan acabi.
-  sincronitza().then((ok) => { if (ok) renderContingut(); });
+  sincronitza().then((ok) => { if (ok) refrescaSegur(); });
 }
 
 // Registre del service worker (PWA / offline).
