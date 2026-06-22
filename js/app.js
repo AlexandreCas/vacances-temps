@@ -60,10 +60,10 @@ function renderBanner() {
   }
   const fa = Math.round((Date.now() - estat.temps.ts) / 60000);
   if (estat.temps.offline) {
-    b.textContent = `⚠️ Sense connexió — dades de fa ${fa} min`;
+    b.textContent = `⚠️ Sense connexió (fa ${fa} min)`;
     b.className = "banner offline";
   } else {
-    b.textContent = `✓ Actualitzat ara mateix`;
+    b.textContent = `✓ Actualitzat`;
     b.className = "banner ok";
   }
 }
