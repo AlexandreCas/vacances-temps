@@ -269,12 +269,12 @@ export const FLIGHTS = {
   },
   "2026-07-11": {
     segs: [
-      { num: "EY377 · Etihad", de: "Malé MLE", t1: "T1", surt: "21:25", a: "Abu Dhabi AUH", t2: "Term. A", arr: "00:25 (+1)", dur: "4h00", seients: "17A · 17B · 17C" },
+      { num: "EY377 · Etihad", de: "Malé MLE", t1: "T1", surt: "21:25", a: "Abu Dhabi AUH", t2: "Term. A", arr: "00:25 (+1)", dur: "4h00", seients: "24A · 24B · 24C" },
     ],
   },
   "2026-07-12": {
     segs: [
-      { num: "EY111 · Etihad", de: "Abu Dhabi AUH", t1: "Term. A", surt: "02:30", a: "Barcelona BCN", t2: "T1", arr: "07:35", dur: "7h05" },
+      { num: "EY111 · Etihad", de: "Abu Dhabi AUH", t1: "Term. A", surt: "02:30", a: "Barcelona BCN", t2: "T1", arr: "07:35", dur: "7h05", seients: "17A · 17B · 17C" },
     ],
   },
 };
