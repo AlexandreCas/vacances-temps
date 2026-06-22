@@ -154,8 +154,10 @@ export function renderDespeses(dia, obert = false) {
       <input class="desp-amount" type="number" inputmode="decimal" placeholder="Import" />
       <select class="desp-cur">${opCur("¥")}${opCur("€")}${opCur("$")}</select>
       <select class="desp-fcat">${CATEGORIES.map((c) => `<option value="${c.id}">${c.ico} ${c.nom}</option>`).join("")}</select>
-      <select class="desp-fwho">${PERSONES.map(opPers).join("")}</select>
-      <button class="desp-add" type="button">Afegir</button>
+      <div class="desp-form-end">
+        <select class="desp-fwho">${PERSONES.map(opPers).join("")}</select>
+        <button class="desp-add" type="button">Afegir</button>
+      </div>
     </div>
   </details>`;
 }

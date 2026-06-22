@@ -646,14 +646,15 @@ a { color: var(--aqua); }
 .desp-amount { flex: 1 1 90px; min-width: 0; }
 .desp-cur { flex: 0 0 64px; }
 .desp-fcat { flex: 1 1 130px; }
-.desp-fwho { flex: 1 1 110px; }
+.desp-form-end { flex: 1 1 100%; display: flex; gap: 8px; }
+.desp-fwho { flex: 1 1 auto; min-width: 0; }
 .desp-form input, .desp-form select {
   background: var(--ink-3); border: 1px solid var(--line);
   border-radius: 10px; padding: 10px; color: var(--mist); font: inherit; font-size: 0.9rem;
 }
 .desp-form input:focus, .desp-form select:focus { outline: none; border-color: var(--vermilion); }
 .desp-add {
-  flex: 1 1 100%; padding: 11px; border: 0; border-radius: 10px;
+  flex: 0 0 auto; padding: 11px 22px; border: 0; border-radius: 10px;
   background: var(--vermilion); color: #fff; font: inherit; font-weight: 700; cursor: pointer;
 }
 .desp-add:active { opacity: 0.85; }
