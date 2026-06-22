@@ -82,6 +82,7 @@ function renderVols(dia) {
             <span class="fl-term">${s.t2 || ""}</span>
           </div>
         </div>
+        ${s.seients ? `<div class="fl-seats">💺 Seients · ${s.seients}</div>` : ""}
       </div>`
     )
     .join("");

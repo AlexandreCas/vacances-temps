@@ -361,6 +361,7 @@ a { color: var(--aqua); }
 .fl-line { position: relative; text-align: center; min-width: 56px; }
 .fl-line::before { content: ""; position: absolute; top: 50%; left: 0; right: 0; height: 1px; background: var(--line-2); }
 .fl-line span { position: relative; background: var(--ink-2); padding: 0 5px; font-size: 0.64rem; color: var(--mist-3); }
+.fl-seats { margin: 8px 0 0; font-size: 0.78rem; color: var(--mist-2); }
 .fl-nota { margin: 14px 0 0; font-size: 0.8rem; color: var(--gold); background: rgba(242, 181, 59, 0.08); border-left: 2px solid var(--gold); padding: 8px 12px; border-radius: 0 8px 8px 0; }
 
 /* =========================================================
@@ -548,6 +549,9 @@ a { color: var(--aqua); }
 
 /* ---------- Peu ---------- */
 .peu { text-align: center; padding: 6px 20px 24px; color: var(--mist-3); font-size: 0.72rem; max-width: var(--wrap); margin: 0 auto; }
+.peu a { color: var(--aqua); }
+.peu-tel { font-size: 0.84rem; color: var(--mist-2); margin: 0 0 10px; }
+.peu-tel a { font-weight: 700; }
 
 /* ---------- Avís de càrrega ---------- */
 .avis { text-align: center; color: var(--mist-2); }

@@ -256,8 +256,8 @@ export function hotelPerData(date) {
 export const FLIGHTS = {
   "2026-06-23": {
     segs: [
-      { num: "EY112 · Etihad", de: "Barcelona BCN", t1: "T1", surt: "10:45", a: "Abu Dhabi AUH", t2: "Term. A", arr: "19:20", dur: "6h35" },
-      { num: "EY814 · Etihad", de: "Abu Dhabi AUH", t1: "Term. A", surt: "21:10", a: "Osaka KIX", t2: "T1", arr: "11:50 (+1)", dur: "9h40" },
+      { num: "EY112 · Etihad", de: "Barcelona BCN", t1: "T1", surt: "10:45", a: "Abu Dhabi AUH", t2: "Term. A", arr: "19:20", dur: "6h35", seients: "Alex 27C · Yurena 27B · Kenia 27A" },
+      { num: "EY814 · Etihad", de: "Abu Dhabi AUH", t1: "Term. A", surt: "21:10", a: "Osaka KIX", t2: "T1", arr: "11:50 (+1)", dur: "9h40", seients: "Alex 18H · Yurena 18J · Kenia 18K" },
     ],
   },
   "2026-07-07": {
@@ -269,7 +269,7 @@ export const FLIGHTS = {
   },
   "2026-07-11": {
     segs: [
-      { num: "EY377 · Etihad", de: "Malé MLE", t1: "T1", surt: "21:25", a: "Abu Dhabi AUH", t2: "Term. A", arr: "00:25 (+1)", dur: "4h00" },
+      { num: "EY377 · Etihad", de: "Malé MLE", t1: "T1", surt: "21:25", a: "Abu Dhabi AUH", t2: "Term. A", arr: "00:25 (+1)", dur: "4h00", seients: "17A · 17B · 17C" },
     ],
   },
   "2026-07-12": {
