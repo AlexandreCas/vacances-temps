@@ -135,6 +135,7 @@ export const DAYS = [
   {
     date: "2026-07-04", loc: "tokyo", hotel: "Grand Nikko Tokyo Daiba", type: "estada",
     pla: [
+      { t: "logistica", txt: "📋 Declaració de salut de Maldives (IMUGA): cal omplir-la com a màxim 96 h abans d'arribar (arribada el 8 jul). Ja la pots fer a <a href='https://imuga.immigration.gov.mv/' target='_blank' rel='noopener'>imuga.immigration.gov.mv</a>" },
       { t: "apat", inc: true, txt: "Esmorzar a l'hotel" },
       { t: "tren", inc: true, txt: "Takayama → Nagoya en autocar i tren bala Hikari fins a Odawara; trasllat a Hakone" },
       { t: "apat", inc: true, txt: "Caixa de dinar tipus pícnic" },
@@ -167,6 +168,7 @@ export const DAYS = [
   {
     date: "2026-07-07", loc: "maldives", hotel: "Vol Tòquio → Maldives", type: "viatge",
     pla: [
+      { t: "logistica", txt: "📋 Abans de volar: comprova que has omplert la Declaració de salut de Maldives (IMUGA): <a href='https://imuga.immigration.gov.mv/' target='_blank' rel='noopener'>imuga.immigration.gov.mv</a>" },
       { t: "lliure", txt: "Matí a Odaiba: compres al Daiso i botigues retro. Demana el late check-out." },
       { t: "vol", txt: "Vespre: recollida cap a Haneda; vol AirAsia D7 523 a les 23:50h." },
     ],
@@ -251,6 +253,30 @@ export const HOTELS = [
 export function hotelPerData(date) {
   return HOTELS.find((h) => date >= h.checkin && date < h.checkout) || null;
 }
+
+// Contactes d'assistència en destí.
+export const CONTACTES = [
+  {
+    zona: "Japó · Ibero Japan",
+    nota: "Dl-Dv 10:00-19:00 (excepte festius)",
+    items: [
+      { lab: "Oficina central (parla hispà)", tel: "+81 3-6228-1738" },
+      { lab: "Emergències — WhatsApp (només missatges)", tel: "+81 80 4574 2349" },
+      { lab: "Email emergències", email: "mikatour@japan.com.jp" },
+    ],
+  },
+  {
+    zona: "Maldives · Splendid Asia",
+    nota: "Mostrador núm. A11 a l'aeroport de Malé",
+    items: [
+      { lab: "Ahmed Fayaz — Airport Manager", tel: "+960 7792883" },
+      { lab: "Jumaana Mohamed — Reserves", tel: "+960 7500707" },
+      { lab: "Ahmed Farooq — Sales Manager", tel: "+960 7723122" },
+      { lab: "Azmeen — Viber/WhatsApp/WeChat", tel: "+960 9903114" },
+      { lab: "Shahuna Moosa — Viber/WhatsApp/WeChat", tel: "+960 7910552" },
+    ],
+  },
+];
 
 // Vols per data de sortida. "(+1)" = arriba l'endemà.
 export const FLIGHTS = {

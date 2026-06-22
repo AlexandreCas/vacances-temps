@@ -1,7 +1,7 @@
 // Helpers de render (generen HTML a partir de les dades).
 import { descriuCodi, iconaSVG, classePanell } from "./weather.js";
 import { recomanaRoba, chipsRoba } from "./clothing.js";
-import { LOCATIONS, hotelPerData, FLIGHTS } from "./itinerary.js";
+import { LOCATIONS, hotelPerData, FLIGHTS, CONTACTES } from "./itinerary.js";
 import {
   CATEGORIES, PERSONES, personaPredef, despesesDia,
   totalsPerMoneda, totalsPersonaDia, totalsViatge, totalsViatgePersona, catInfo,
@@ -356,6 +356,29 @@ export function renderResumLlista(days, getResum) {
     })
     .join("");
   return `<div class="journey">${legs}</div>`;
+}
+
+// ---- Contactes d'assistència ----
+export function renderContactes() {
+  const telHref = (t) => "tel:" + t.replace(/[^+\d]/g, "");
+  return `<section class="card">
+    <p class="kicker">Contactes d'assistència</p>
+    ${CONTACTES.map(
+      (z) => `<div class="ct-zona">
+        <p class="ct-tit">${z.zona}</p>
+        <ul class="ct-list">
+          ${z.items
+            .map((it) =>
+              it.email
+                ? `<li><span class="ct-lab">${it.lab}</span><a href="mailto:${it.email}">${it.email}</a></li>`
+                : `<li><span class="ct-lab">${it.lab}</span><a href="${telHref(it.tel)}">${it.tel}</a></li>`
+            )
+            .join("")}
+        </ul>
+        ${z.nota ? `<p class="ct-nota">${z.nota}</p>` : ""}
+      </div>`
+    ).join("")}
+  </section>`;
 }
 
 // ---- Llista de maleta agregada ----

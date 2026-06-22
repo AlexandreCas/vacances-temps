@@ -25,6 +25,7 @@
           <button id="fx-btn" class="icon-btn" type="button" aria-label="Calculadora ien / euro">€</button>
           <button id="chart-btn" class="icon-btn" type="button" aria-label="Gràfic de despeses"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3v18h18"/><path d="M18 17V9"/><path d="M13 17V5"/><path d="M8 17v-3"/></svg></button>
           <button id="game-btn" class="icon-btn" type="button" aria-label="Joc busca mines"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="13" r="9"/><path d="M14.35 4.65 16.3 2.7a2.41 2.41 0 0 1 3.4 0l1.6 1.6a2.4 2.4 0 0 1 0 3.4l-1.95 1.95"/><path d="m22 2-1.5 1.5"/></svg></button>
+          <button id="faq-btn" class="icon-btn" type="button" aria-label="Preguntes freqüents">?</button>
         </div>
         <div id="banner" class="banner"></div>
       </div>
@@ -72,6 +73,15 @@
       <p class="kicker">Frases útils 日本語</p>
       <div id="ph-tabs" class="ph-tabs"></div>
       <div id="ph-list" class="ph-list"></div>
+    </div>
+  </div>
+
+  <div id="faq-modal" class="fx-modal" hidden>
+    <div class="fx-backdrop" data-close></div>
+    <div class="fx-card faq-card" role="dialog" aria-modal="true" aria-label="Preguntes freqüents">
+      <button class="fx-x" type="button" data-close aria-label="Tancar">&times;</button>
+      <p class="kicker">Preguntes freqüents</p>
+      <div id="faq-list" class="faq-list"></div>
     </div>
   </div>
 

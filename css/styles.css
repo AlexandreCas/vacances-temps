@@ -547,6 +547,15 @@ a { color: var(--aqua); }
 }
 .pack-list .ico-sm { color: var(--aqua); flex: 0 0 auto; }
 
+/* ---------- Contactes d'assistència ---------- */
+.ct-zona + .ct-zona { margin-top: 16px; }
+.ct-tit { margin: 0 0 6px; font-weight: 700; font-size: 0.9rem; color: var(--mist); }
+.ct-list { list-style: none; margin: 0; padding: 0; }
+.ct-list li { display: flex; flex-direction: column; gap: 2px; padding: 8px 0; border-top: 1px solid var(--line); }
+.ct-lab { font-size: 0.78rem; color: var(--mist-3); }
+.ct-list a { color: var(--aqua); font-weight: 700; font-size: 0.95rem; }
+.ct-nota { margin: 8px 0 0; font-size: 0.78rem; color: var(--gold); }
+
 /* ---------- Peu ---------- */
 .peu { text-align: center; padding: 6px 20px 24px; color: var(--mist-3); font-size: 0.72rem; max-width: var(--wrap); margin: 0 auto; }
 .peu a { color: var(--aqua); }
@@ -709,6 +718,26 @@ a { color: var(--aqua); }
 .cell.n7 { color: #c47fb0; }
 .cell.n8 { color: #aab3c2; }
 .game-help { margin: 14px 0 0; font-size: 0.74rem; color: var(--mist-3); text-align: center; }
+
+/* ---------- Preguntes freqüents ---------- */
+.faq-card { width: 100%; max-width: 460px; max-height: 84vh; display: flex; flex-direction: column; }
+.faq-list { flex: 1 1 auto; overflow-y: auto; }
+.faq-item { border-top: 1px solid var(--line); }
+.faq-item:first-child { border-top: 0; }
+.faq-item summary {
+  cursor: pointer; list-style: none; padding: 12px 24px 12px 0; position: relative;
+  font-weight: 700; font-size: 0.92rem; color: var(--mist);
+}
+.faq-item summary::-webkit-details-marker { display: none; }
+.faq-item summary::after {
+  content: ""; position: absolute; right: 4px; top: 16px;
+  width: 8px; height: 8px; border-right: 2px solid var(--mist-3); border-bottom: 2px solid var(--mist-3);
+  transform: rotate(45deg); transition: transform 0.2s;
+}
+.faq-item[open] summary::after { transform: rotate(-135deg); }
+.faq-a { padding: 0 4px 14px 0; font-size: 0.88rem; line-height: 1.55; color: var(--mist-2); }
+.faq-a a { color: var(--aqua); font-weight: 700; }
+.faq-a strong { color: var(--mist); }
 
 /* ---------- Pantalles grans (iPad / ordinador) ---------- */
 @media (min-width: 900px) {

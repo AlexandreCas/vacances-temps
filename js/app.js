@@ -6,6 +6,7 @@ import { initFX } from "./fx.js";
 import { initFrases } from "./phrases.js";
 import { initGame } from "./game.js";
 import { initChart } from "./chart.js";
+import { initFaq } from "./faq.js";
 import { refreshRates } from "./rates.js";
 import { afegeixDespesa, treuDespesa, desaPersona, sincronitza } from "./expenses.js";
 import {
@@ -13,6 +14,7 @@ import {
   renderDetall,
   renderResumLlista,
   renderMaleta,
+  renderContactes,
   renderDespeses,
   renderResumDespeses,
   formatData,
@@ -82,7 +84,7 @@ function renderContingut() {
   } else {
     c.className = "contingut vista-ruta";
     c.innerHTML =
-      renderResumLlista(DAYS, resumDe) + renderResumDespeses() + renderMaleta(maletaAgregada());
+      renderResumLlista(DAYS, resumDe) + renderResumDespeses() + renderContactes() + renderMaleta(maletaAgregada());
   }
 }
 
@@ -192,6 +194,7 @@ async function inici() {
   initFrases();
   initGame();
   initChart();
+  initFaq();
   refreshRates();
   renderEstatCarrega("⏳ Carregant la previsió del temps…");
   try {
