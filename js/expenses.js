@@ -20,6 +20,10 @@ export const CATEGORIES = [
   { id: "regal", ico: "🎁", nom: "Regal", color: "#f2b53b" },
   { id: "transport", ico: "🚆", nom: "Transport", color: "#38c8c9" },
   { id: "entrades", ico: "🎟️", nom: "Entrades", color: "#9a7fd0" },
+  { id: "restaurant", ico: "🍽️", nom: "Restaurant", color: "#d98c5f" },
+  { id: "cafeteria", ico: "☕", nom: "Cafeteria", color: "#c08457" },
+  { id: "allotjament", ico: "🏨", nom: "Allotjament", color: "#7aa874" },
+  { id: "activitats", ico: "🎢", nom: "Activitats", color: "#e879a6" },
   { id: "altres", ico: "💴", nom: "Altres", color: "#6f798c" },
 ];
 export function catInfo(id) {
